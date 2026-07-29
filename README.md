@@ -22,7 +22,7 @@
 
 This repository provides a drop-in governance pack for running an AI role panel on code-changing work.
 
-It gives teams a deterministic, evidence-based process to improve code design quality through:
+It gives teams a structured, evidence-based process to improve code design quality through:
 - explicit role votes
 - gate checks per activity
 - tie-resolution rules
@@ -52,7 +52,7 @@ Most AI coding workflows are fast but inconsistent. This pack adds a lightweight
   - Declares required phases and role artifact requirements.
 
 - `.github/roles/*.md`
-  - Role-specific contracts with deterministic checklists and block-validity rules.
+  - Role-specific contracts with explicit checklists and block-validity rules.
   - Required roles: Action, Refactoring, Deletion, Architecture, SDET, Junior.
   - Conditional specialists: UX, Technical Writer.
 

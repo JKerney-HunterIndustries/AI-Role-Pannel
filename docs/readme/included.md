@@ -13,6 +13,6 @@
   - Declares required phases and role artifact requirements.
 
 - `.github/roles/*.md`
-  - Role-specific contracts with deterministic checklists and block-validity rules.
+  - Role-specific contracts with explicit checklists and block-validity rules.
   - Required roles: Action, Refactoring, Deletion, Architecture, SDET, Junior.
   - Conditional specialists: UX, Technical Writer.

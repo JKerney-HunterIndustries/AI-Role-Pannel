@@ -1,6 +1,6 @@
 # Agent Governance Details
 
-This file contains the detailed governance mechanics referenced by [.github/copilot-instructions.md](./copilot-instructions.md).
+This file contains the detailed governance mechanics for the AI Role Panel governance pack.
 
 ## Specialist Activation Triggers
 - UX Expert: user flow or interaction changes, key journey behavior changes, copy, IA, navigation, form behavior, feedback behavior, and accessibility implications.
