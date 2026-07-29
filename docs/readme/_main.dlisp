@@ -10,7 +10,7 @@
         (Subsection ./gatebehavior.md)
         (Subsection ./tdd.md)
         (Subsection ./adoption.md)
-        (Subsection ./body.md)
+        (Subsection ./quickstart.md)
         (Subsection ./contributors.md)
     )
 )

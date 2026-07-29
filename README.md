@@ -106,9 +106,7 @@ Recommended rollout:
 3. Keep role artifacts in PR notes for auditability.
 4. Expand to broader repo usage after 2-3 successful iterations.
 
-## TBD ##
-
-### Quick Start Prompt Template ###
+## Quick Start Prompt Template ##
 
 Use this template when invoking the panel agent:
 
