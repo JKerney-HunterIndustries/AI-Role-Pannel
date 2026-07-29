@@ -1,7 +1,7 @@
 (documents
     (document
         (readme
-            (source ./_main.md)
+            (source ./readme/_main.md)
             (output ../README.md)
         )
     )

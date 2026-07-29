@@ -4,7 +4,7 @@
 
 <!-- Compiled with doculisp https://www.npmjs.com/package/doculisp -->
 
-# AI Role Panel Governance Pack
+# AI Role Panel Governance Pack #
 
 This repository provides a drop-in governance pack for running an AI role panel on code-changing work.
 
@@ -15,7 +15,7 @@ It gives teams a deterministic, evidence-based process to improve code design qu
 - test-first expectations
 - required invocation evidence
 
-## Why This Exists
+## Why This Exists ##
 
 Most AI coding workflows are fast but inconsistent. This pack adds a lightweight governance layer so quality decisions are:
 - repeatable
@@ -23,7 +23,7 @@ Most AI coding workflows are fast but inconsistent. This pack adds a lightweight
 - scoped by role authority
 - hard to bypass accidentally
 
-## What Is Included
+## What Is Included ##
 
 - `.github/agent-governance.md`
   - Core operating policy.
@@ -42,7 +42,7 @@ Most AI coding workflows are fast but inconsistent. This pack adds a lightweight
   - Required roles: Action, Refactoring, Deletion, Architecture, SDET, Junior.
   - Conditional specialists: UX, Technical Writer.
 
-## Intentional Design Choice: No Default Instructions File
+## Intentional Design Choice: No Default Instructions File ##
 
 This pack intentionally does not include a default `copilot-instructions.md`.
 
@@ -51,7 +51,7 @@ Reason:
 - avoids precedence confusion across global, workspace, and project instruction files
 - lets adopters opt in to this governance model explicitly
 
-## How To Use The Panel
+## How To Use The Panel ##
 
 Use the `Multi-Agent Governance` agent for code-changing requests.
 
@@ -63,7 +63,7 @@ Expected lifecycle:
 
 At each stage, roles vote using `.github/vote-schema.md`, and gates decide pass or blocked.
 
-## Required Role Set
+## Required Role Set ##
 
 Always include these roles for code-changing governance:
 1. Action
@@ -77,7 +77,7 @@ Activate these specialists only when trigger conditions are present:
 1. UX
 2. Technical Writer
 
-## Gate Behavior Summary
+## Gate Behavior Summary ##
 
 - A stage is blocked when defined blocking roles return a valid `block` vote.
 - Block votes must include clear correction conditions and concrete evidence.
@@ -86,7 +86,7 @@ Activate these specialists only when trigger conditions are present:
 
 See `.github/agent-governance.md` for full gate authority and guardrails.
 
-## TDD and Evidence Expectations
+## TDD and Evidence Expectations ##
 
 For code changes:
 1. define tests first
@@ -96,7 +96,7 @@ For code changes:
 
 Final recommendations should include role invocation evidence and explicit risk tracking.
 
-## Adoption Pattern
+## Adoption Pattern ##
 
 Recommended rollout:
 1. Start with one pilot PR using full governance.
@@ -104,7 +104,7 @@ Recommended rollout:
 3. Keep role artifacts in PR notes for auditability.
 4. Expand to broader repo usage after 2-3 successful iterations.
 
-## Quick Start Prompt Template
+## Quick Start Prompt Template ##
 
 Use this template when invoking the panel agent:
 
