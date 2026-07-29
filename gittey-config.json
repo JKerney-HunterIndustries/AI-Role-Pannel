@@ -13,7 +13,11 @@
     "aliases": [
         {
             "name": "push",
-            "command": "cls; doculisp .\\docs\\_project.dlproj; gittey commit; git push"
+            "command": "gittey docs; gittey commit; git push"
+        },
+        {
+            "name": "docs",
+            "command": "cls; doculisp .\\docs\\_project.dlproj"
         }
     ],
     "collaborators": [

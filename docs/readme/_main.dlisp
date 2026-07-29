@@ -8,6 +8,7 @@
         (Subsection ./design.md)
         (Subsection ./howto.md)
         (Subsection ./roleset.md)
+        (Subsection ./rolefocus.md)
         (Subsection ./gatebehavior.md)
         (Subsection ./tdd.md)
         (Subsection ./adoption.md)
