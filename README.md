@@ -79,9 +79,7 @@ Activate these specialists only when trigger conditions are present:
 1. UX
 2. Technical Writer
 
-## TBD ##
-
-### Gate Behavior Summary ###
+## Gate Behavior Summary ##
 
 - A stage is blocked when defined blocking roles return a valid `block` vote.
 - Block votes must include clear correction conditions and concrete evidence.
@@ -89,6 +87,8 @@ Activate these specialists only when trigger conditions are present:
 - Escalate only for unresolved ties or preference-dependent decisions.
 
 See `.github/agent-governance.md` for full gate authority and guardrails.
+
+## TBD ##
 
 ### TDD and Evidence Expectations ###
 
