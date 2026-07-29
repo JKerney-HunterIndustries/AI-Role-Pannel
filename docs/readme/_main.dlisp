@@ -1,5 +1,6 @@
 (section-meta
     (title AI Role Panel Governance Pack)
+    (author jason-kerney)
     (include
         (Subsection ./overview.md)
         (Subsection ./exists.md)
