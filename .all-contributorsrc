@@ -18,6 +18,17 @@
       "contributions": [
         "financial"
       ]
+    },
+    {
+      "login": "cmstead",
+      "name": "Chris Stead",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4184510?v=4",
+      "profile": "http://www.chrisstead.net/",
+      "contributions": [
+        "design",
+        "ideas",
+        "mentoring"
+      ]
     }
   ],
   "contributorsPerLine": 7,
