@@ -2,7 +2,7 @@
 
 This section helps users quickly understand each role's review lens and likely block conditions.
 
-<!-- (dl (## Required Roles)) -->
+<!-- (dl (# Required Roles)) -->
 
 1. Action
 - Cares most about scope discipline: one independently releasable, testable slice per governed change.
@@ -34,7 +34,7 @@ This section helps users quickly understand each role's review lens and likely b
 - Looks for hidden assumptions, weak rationale, overconfidence, and drift between requirements, design, plan, and implementation.
 - Blocks when key assumptions are unstated or when stage-to-stage logic is inconsistent.
 
-<!-- (dl (## Conditional Specialists)) -->
+<!-- (dl (# Conditional Specialists)) -->
 
 1. UX (activated by workflow, interaction, navigation, copy, or accessibility changes)
 - Cares most about discoverability, usability, accessibility, placement, and transition clarity.
@@ -46,7 +46,7 @@ This section helps users quickly understand each role's review lens and likely b
 - Looks for missing same-change docs updates, stale instructions, weak examples, and poor discoverability.
 - Blocks when material user-facing docs are missing/inaccurate for changed behavior, or release-note expectations are unmet when applicable.
 
-<!-- (dl (## How To Use This During Review)) -->
+<!-- (dl (# How To Use This During Review)) -->
 
 When a role blocks, use its lens first to resolve the issue:
 1. identify the failed check in that role's contract
