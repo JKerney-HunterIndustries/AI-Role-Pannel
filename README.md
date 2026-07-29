@@ -65,9 +65,7 @@ Expected lifecycle:
 
 At each stage, roles vote using `.github/vote-schema.md`, and gates decide pass or blocked.
 
-## TBD ##
-
-### Required Role Set ###
+## Required Role Set ##
 
 Always include these roles for code-changing governance:
 1. Action
@@ -80,6 +78,8 @@ Always include these roles for code-changing governance:
 Activate these specialists only when trigger conditions are present:
 1. UX
 2. Technical Writer
+
+## TBD ##
 
 ### Gate Behavior Summary ###
 

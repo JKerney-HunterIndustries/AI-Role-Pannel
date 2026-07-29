@@ -6,6 +6,7 @@
         (Subsection ./included.md)
         (Subsection ./design.md)
         (Subsection ./howto.md)
+        (Subsection ./roleset.md)
         (Subsection ./body.md)
         (Subsection ./contributors.md)
     )
