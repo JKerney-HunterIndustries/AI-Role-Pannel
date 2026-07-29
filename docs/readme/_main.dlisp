@@ -5,6 +5,7 @@
         (Subsection ./exists.md)
         (Subsection ./included.md)
         (Subsection ./design.md)
+        (Subsection ./howto.md)
         (Subsection ./body.md)
         (Subsection ./contributors.md)
     )

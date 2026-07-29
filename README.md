@@ -53,9 +53,7 @@ Reason:
 - avoids precedence confusion across global, workspace, and project instruction files
 - lets adopters opt in to this governance model explicitly
 
-## TBD ##
-
-### How To Use The Panel ###
+## How To Use The Panel ##
 
 Use the `Multi-Agent Governance` agent for code-changing requests.
 
@@ -66,6 +64,8 @@ Expected lifecycle:
 4. code_change
 
 At each stage, roles vote using `.github/vote-schema.md`, and gates decide pass or blocked.
+
+## TBD ##
 
 ### Required Role Set ###
 
