@@ -1,13 +1,5 @@
 <!-- (dl (section-meta TBD)) -->
 
-<!-- (dl (# Why This Exists)) -->
-
-Most AI coding workflows are fast but inconsistent. This pack adds a lightweight governance layer so quality decisions are:
-- repeatable
-- auditable
-- scoped by role authority
-- hard to bypass accidentally
-
 <!-- (dl (# What Is Included)) -->
 
 - `.github/agent-governance.md`
