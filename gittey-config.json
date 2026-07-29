@@ -10,7 +10,12 @@
         "prefixes": {}
     },
     "verboseMode": false,
-    "aliases": [],
+    "aliases": [
+        {
+            "name": "push",
+            "command": "cls; doculisp .\\docs\\_project.dlproj; gittey commit; git push"
+        }
+    ],
     "collaborators": [
         "jason-kerney"
     ]
