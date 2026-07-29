@@ -1,7 +1,7 @@
 (documents
     (document
         (readme
-            (source ./readme/_main.md)
+            (source ./readme/_main.dlisp)
             (output ../README.md)
         )
     )

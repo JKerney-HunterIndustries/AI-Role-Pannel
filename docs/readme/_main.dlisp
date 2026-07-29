@@ -1,0 +1,8 @@
+(section-meta
+    (title AI Role Panel Governance Pack)
+    (include
+        (Subsection ./body.md)
+    )
+)
+
+(content)

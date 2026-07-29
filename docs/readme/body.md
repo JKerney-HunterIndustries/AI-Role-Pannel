@@ -1,4 +1,4 @@
-<!-- (dl (section-meta AI Role Panel Governance Pack)) -->
+<!-- (dl (section-meta Overview)) -->
 
 This repository provides a drop-in governance pack for running an AI role panel on code-changing work.
 
