@@ -112,6 +112,12 @@ Use this template when invoking the panel agent:
 
 "Apply Multi-Agent Governance to this code change. Run requirements, design, implementation_plan, and code_change activities. Use required role votes and activate specialists only when triggers apply. Enforce gate rules and provide invocation evidence, TDD plan, and risk register in the final output."
 
+## Contributors ✨ ##
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- GENERATED DOCUMENT DO NOT EDIT! -->

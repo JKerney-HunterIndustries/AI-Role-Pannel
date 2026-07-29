@@ -2,6 +2,7 @@
     (title AI Role Panel Governance Pack)
     (include
         (Subsection ./body.md)
+        (Subsection ./contributors.md)
     )
 )
 
