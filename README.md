@@ -17,6 +17,8 @@ It gives teams a deterministic, evidence-based process to improve code design qu
 - test-first expectations
 - required invocation evidence
 
+## TBD ##
+
 ### Why This Exists ###
 
 Most AI coding workflows are fast but inconsistent. This pack adds a lightweight governance layer so quality decisions are:
