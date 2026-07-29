@@ -6,6 +6,18 @@
 
 # AI Role Panel Governance Pack #
 
+1. [Overview](#overview)
+2. [Why This Exists](#why-this-exists)
+3. [What Is Included](#what-is-included)
+4. [Intentional Design Choice: No Default Instructions File](#intentional-design-choice-no-default-instructions-file)
+5. [How To Use The Panel](#how-to-use-the-panel)
+6. [Required Role Set](#required-role-set)
+7. [Gate Behavior Summary](#gate-behavior-summary)
+8. [TDD and Evidence Expectations](#tdd-and-evidence-expectations)
+9. [Adoption Pattern](#adoption-pattern)
+10. [Quick Start Prompt Template](#quick-start-prompt-template)
+11. [Contributors ✨](#contributors-)
+
 ## Overview ##
 
 This repository provides a drop-in governance pack for running an AI role panel on code-changing work.
