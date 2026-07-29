@@ -98,15 +98,15 @@ For code changes:
 
 Final recommendations should include role invocation evidence and explicit risk tracking.
 
-## TBD ##
-
-### Adoption Pattern ###
+## Adoption Pattern ##
 
 Recommended rollout:
 1. Start with one pilot PR using full governance.
 2. Capture friction and tune role prompts, not gate strictness.
 3. Keep role artifacts in PR notes for auditability.
 4. Expand to broader repo usage after 2-3 successful iterations.
+
+## TBD ##
 
 ### Quick Start Prompt Template ###
 

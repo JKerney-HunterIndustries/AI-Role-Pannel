@@ -9,6 +9,7 @@
         (Subsection ./roleset.md)
         (Subsection ./gatebehavior.md)
         (Subsection ./tdd.md)
+        (Subsection ./adoption.md)
         (Subsection ./body.md)
         (Subsection ./contributors.md)
     )
