@@ -1,9 +1,3 @@
-<!-- GENERATED DOCUMENT DO NOT EDIT! -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-
-<!-- Compiled with doculisp https://www.npmjs.com/package/doculisp -->
-
 # AI Role Panel Governance Pack
 
 This repository provides a drop-in governance pack for running an AI role panel on code-changing work.
@@ -109,7 +103,3 @@ Recommended rollout:
 Use this template when invoking the panel agent:
 
 "Apply Multi-Agent Governance to this code change. Run requirements, design, implementation_plan, and code_change activities. Use required role votes and activate specialists only when triggers apply. Enforce gate rules and provide invocation evidence, TDD plan, and risk register in the final output."
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-<!-- GENERATED DOCUMENT DO NOT EDIT! -->
