@@ -8,6 +8,7 @@
         (Subsection ./howto.md)
         (Subsection ./roleset.md)
         (Subsection ./gatebehavior.md)
+        (Subsection ./tdd.md)
         (Subsection ./body.md)
         (Subsection ./contributors.md)
     )

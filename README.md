@@ -88,9 +88,7 @@ Activate these specialists only when trigger conditions are present:
 
 See `.github/agent-governance.md` for full gate authority and guardrails.
 
-## TBD ##
-
-### TDD and Evidence Expectations ###
+## TDD and Evidence Expectations ##
 
 For code changes:
 1. define tests first
@@ -99,6 +97,8 @@ For code changes:
 4. rerun tests and report outcomes
 
 Final recommendations should include role invocation evidence and explicit risk tracking.
+
+## TBD ##
 
 ### Adoption Pattern ###
 
