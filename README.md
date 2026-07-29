@@ -25,9 +25,7 @@ Most AI coding workflows are fast but inconsistent. This pack adds a lightweight
 - scoped by role authority
 - hard to bypass accidentally
 
-## TBD ##
-
-### What Is Included ###
+## What Is Included ##
 
 - `.github/agent-governance.md`
   - Core operating policy.
@@ -45,6 +43,8 @@ Most AI coding workflows are fast but inconsistent. This pack adds a lightweight
   - Role-specific contracts with deterministic checklists and block-validity rules.
   - Required roles: Action, Refactoring, Deletion, Architecture, SDET, Junior.
   - Conditional specialists: UX, Technical Writer.
+
+## TBD ##
 
 ### Intentional Design Choice: No Default Instructions File ###
 

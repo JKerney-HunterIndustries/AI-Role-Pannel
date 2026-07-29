@@ -3,6 +3,7 @@
     (include
         (Subsection ./overview.md)
         (Subsection ./exists.md)
+        (subsection ./included.md)
         (Subsection ./body.md)
         (Subsection ./contributors.md)
     )
