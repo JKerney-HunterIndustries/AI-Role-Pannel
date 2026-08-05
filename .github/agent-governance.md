@@ -73,7 +73,20 @@ Full role definitions are in the `roles/` directory. When invoking a role sub-ag
   2. current page
   3. correct page
   4. proposed flow remodel across affected pages
+- Security fallback votes are provisional until the minimum security artifact contract is satisfied.
+- Security must not produce a final approve/block outcome without minimum security artifacts that include executed evidence for material security claims.
 - Any block vote is invalid without a clear condition and evidence requirement.
+
+### Security Fallback Minimum Artifact Contract
+When distinct role agents are unavailable and Security runs in fallback mode, final Security outcomes require all of the following:
+- threat-surface evidence: assets, trust boundaries, privileged actions, and external inputs for touched scope.
+- proof-path evidence: named tests/checks/scans for each material security claim.
+- executed evidence: at least one executed artifact per material security claim with pass/fail outcome.
+- provenance evidence: command or tool identity plus run id, timestamp, or artifact path for each executed artifact.
+
+If any required security fallback artifact is missing:
+- Security output is provisional only.
+- activity gate status remains blocked until artifacts are collected.
 
 ## Overlap Policy
 Each role must:
@@ -109,6 +122,7 @@ A recommendation is complete only when all are true:
 - approve_with_risk items are documented as accepted risks.
 - disagreement resolution is explicit.
 - each major decision has at least one proof path.
+- security decisions over material claims include executed evidence artifacts with provenance.
 - code-changing requests include invocation evidence for required and activated specialist roles.
 
 ### Documentation Completeness Requirement (When Technical Writer Is Activated)

@@ -48,6 +48,7 @@ Evaluate applicable risks across:
 - prompt_poisoning: Malicious or tainted content in trusted corpora, memory, or retrieval sources that degrades model behavior over time.
 - trust_tiering: Explicit handling differences between trusted and untrusted context sources.
 - security_invariant: Rule that must always hold (for example, "users can access only their own records").
+- executed_evidence_artifact: Verifiable output from an executed security test/check/scan, including source command or tool name plus runnable provenance (for example run id, timestamp, or artifact path).
 
 ## Deterministic Check Rules
 Every review MUST emit one of `pass|fail|not_applicable` for each SC-C1..SC-C10.
@@ -56,6 +57,7 @@ Result constraints:
 - `not_applicable` is valid only when the touched scope lacks the check surface; cite absent surface and inspected evidence.
 - `pass` and `fail` must cite at least one concrete evidence source.
 - If a check relies on proof, name the exact test/check/scan/artifact; if missing, emit `missing_proof_path`.
+- For SC-C10 `pass`, and for any material security claim used in the verdict, include at least one `executed_evidence_artifact`; if absent, emit `missing_executed_evidence`.
 
 ## Security Checks
 1. SC-C1 authn_authz_integrity
@@ -100,8 +102,8 @@ Result constraints:
 - not_applicable: No model-driven tool invocation path and no sensitive egress surface exists in touched scope.
 
 10. SC-C10 security_verification_evidence
-- Pass: Security invariants and abuse cases are represented by named tests or verifiable checks with observable pass/fail evidence.
-- Fail: A material security claim lacks a named proof path.
+- Pass: Security invariants and abuse cases are represented by named tests or verifiable checks with observable pass/fail evidence, and evidence cites at least one executed artifact per material security claim.
+- Fail: A material security claim lacks a named proof path, or lacks executed evidence artifact references.
 - not_applicable: No new or changed security-relevant claim, invariant, control, or abuse-case assertion exists in touched scope.
 
 ## Activity Application
@@ -120,13 +122,14 @@ design (predictive):
 implementation_plan (prescriptive):
 - Require explicit mitigation steps and verification path for identified risks.
 - Require abuse-case tests for high-risk flows, including prompt injection/poisoning where applicable.
-- Require named evidence sources and explicit `not_applicable` rationale.
+- Require named evidence sources, planned execution/provenance capture, and explicit `not_applicable` rationale.
 - Block if mitigations are deferred without compensating controls and explicit risk acceptance.
 
 code_change (observed):
 - Inspect diffs for new exploit paths, control regressions, and data exposure.
 - Verify tests/checks for critical invariants and abuse paths.
 - Verify each check result cites concrete evidence.
+- Verify material security claims include executed evidence artifact references with runnable provenance.
 - Block for exploitable high or critical findings in touched scope.
 
 ## Severity and Voting Policy
@@ -163,6 +166,9 @@ Invalid block condition:
 4. poisoning_visibility
 - Must block when persistent context sources are introduced or modified without trust tiering/provenance handling in activated AI scope.
 
+5. executed_evidence_required
+- Must not issue a final `approve` or `block` verdict for a material security claim unless executed evidence artifacts are present for in-scope SC-C10 proof paths.
+
 ## Required Review Output (Machine-Friendly)
 When invoked, emit all sections below in deterministic order.
 The shared vote schema governs `reason`, `condition`, `evidence`, and `scope`; Security output wraps around it.
@@ -196,6 +202,8 @@ The shared vote schema governs `reason`, `condition`, `evidence`, and `scope`; S
 - abuse_cases_tested: list
 - proof_paths_used: list
 - missing_proof_paths: list
+- executed_evidence_artifacts: list
+- missing_executed_evidence: list
 
 7. verdict
 - vote: approve|approve_with_risk|block
@@ -235,7 +243,7 @@ Example verdict fragment:
 3. Map relevant OWASP and LLM risk classes.
 4. Evaluate SC-C1..SC-C10 with concrete evidence and explicit `not_applicable` rationale when surfaces are absent.
 5. Build exploitability and severity assessment.
-6. Verify mitigation and security proof paths; list `missing_proof_path` where needed.
+6. Verify mitigation and security proof paths, executed evidence artifacts, and runnable provenance; list `missing_proof_path` and `missing_executed_evidence` where needed.
 7. Apply block validity rules.
 8. Emit full machine-friendly output and include shared vote schema fields unchanged.
 

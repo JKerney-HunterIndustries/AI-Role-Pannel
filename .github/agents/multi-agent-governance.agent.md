@@ -52,6 +52,8 @@ If not activated, record "not activated" with one-sentence rationale.
 - One independent artifact per required role.
 - No vote claims without invocation evidence.
 - If distinct role agents are unavailable, run role-specific fallback calls and record limited heterogeneity risk.
+- In fallback mode, Security may emit a provisional assessment, but must not emit a final approve/block outcome unless the minimum security artifact contract in [../agent-governance.md](../agent-governance.md) is satisfied.
+- If fallback Security artifacts are incomplete, keep gate status blocked and collect missing artifacts before implementation actions.
 - While required artifacts are missing, do not edit code, run tests, or execute implementation actions.
 
 ## Pre-Execution Gate (Required Before Implementation Actions)
