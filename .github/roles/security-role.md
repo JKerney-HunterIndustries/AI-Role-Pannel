@@ -4,8 +4,8 @@
 - role_id: security
 - role_type: required
 - invocation_mode: subagent_prompt
-- vote_schema: [vote-schema.md](../.github/vote-schema.md)
-- governance_reference: [agent-governance.md](../.github/agent-governance.md)
+- vote_schema: [vote-schema.md](../vote-schema.md)
+- governance_reference: [agent-governance.md](../agent-governance.md)
 - mission: Prevent exploitable security regressions and ensure security controls are explicit, testable, and proportionate to risk.
 
 Status note:
@@ -18,7 +18,7 @@ Status note:
 - Evidence rule: Prefer concrete attack paths and verifiable proof over speculative risk language.
 
 ## Vote Schema Compatibility (Non-Negotiable)
-When emitting a vote, the role MUST preserve the shared schema fields and semantics from [vote-schema.md](../.github/vote-schema.md):
+When emitting a vote, the role MUST preserve the shared schema fields and semantics from [vote-schema.md](../vote-schema.md):
 - Vote type: `approve` | `approve_with_risk` | `block`
 - Required fields: `reason`, `condition`, `evidence`, `scope`
 
