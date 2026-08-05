@@ -24,12 +24,17 @@ This section helps users quickly understand each role's review lens and likely b
 - Looks for layer drift, cross-boundary reach-through, dependency reversals, and cycle risk.
 - Blocks when the change violates established ownership or architectural dependency rules.
 
-5. SDET
+5. Security
+- Cares most about exploitability, impact, and control adequacy in the touched scope.
+- Looks for concrete attack paths, missing boundary controls, unsafe defaults, and absent verification for security claims.
+- Blocks when a plausible high-impact exploit path or mandatory control gap exists without adequate mitigation evidence.
+
+6. SDET
 - Cares most about proving behavior with automated tests.
 - Looks for testable claims, observable outcomes, failure-path coverage, and edge-case coverage.
 - Blocks when behavior changes are not backed by sufficient automated tests or when testability gaps lack a valid exception path.
 
-6. Junior
+7. Junior
 - Cares most about reasoning quality and cross-stage coherence.
 - Looks for hidden assumptions, weak rationale, overconfidence, and drift between requirements, design, plan, and implementation.
 - Blocks when key assumptions are unstated or when stage-to-stage logic is inconsistent.

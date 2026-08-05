@@ -8,9 +8,9 @@
 - governance_reference: [agent-governance.md](../.github/agent-governance.md)
 - mission: Prevent exploitable security regressions and ensure security controls are explicit, testable, and proportionate to risk.
 
-Draft status note:
-- This draft defines the contract Security should follow after promotion.
-- Until Security is added to the active governance role set, this document does not activate repository gates by itself.
+Status note:
+- Security is active in the required governance role set.
+- Security block votes participate in repository gates according to [agent-governance.md](../agent-governance.md).
 
 ## Activation and Lens
 - Activation: Always active for code-changing governance workflows.

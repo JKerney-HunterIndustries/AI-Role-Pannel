@@ -55,7 +55,7 @@ Most AI coding workflows are fast but inconsistent. This pack adds a lightweight
 
 - `.github/roles/*.md`
   - Role-specific contracts with explicit checklists and block-validity rules.
-  - Required roles: Action, Refactoring, Deletion, Architecture, SDET, Junior.
+  - Required roles: Action, Refactoring, Deletion, Architecture, Security, SDET, Junior.
   - Conditional specialists: UX, Technical Writer.
 
 ## Intentional Design Choice: No Default Instructions File ##
@@ -86,8 +86,9 @@ Always include these roles for code-changing governance:
 2. Refactoring
 3. Deletion
 4. Architecture
-5. SDET
-6. Junior
+5. Security
+6. SDET
+7. Junior
 
 Activate these specialists only when trigger conditions are present:
 1. UX
@@ -119,12 +120,17 @@ This section helps users quickly understand each role's review lens and likely b
 - Looks for layer drift, cross-boundary reach-through, dependency reversals, and cycle risk.
 - Blocks when the change violates established ownership or architectural dependency rules.
 
-5. SDET
+5. Security
+- Cares most about exploitability, impact, and control adequacy in the touched scope.
+- Looks for concrete attack paths, missing boundary controls, unsafe defaults, and absent verification for security claims.
+- Blocks when a plausible high-impact exploit path or mandatory control gap exists without adequate mitigation evidence.
+
+6. SDET
 - Cares most about proving behavior with automated tests.
 - Looks for testable claims, observable outcomes, failure-path coverage, and edge-case coverage.
 - Blocks when behavior changes are not backed by sufficient automated tests or when testability gaps lack a valid exception path.
 
-6. Junior
+7. Junior
 - Cares most about reasoning quality and cross-stage coherence.
 - Looks for hidden assumptions, weak rationale, overconfidence, and drift between requirements, design, plan, and implementation.
 - Blocks when key assumptions are unstated or when stage-to-stage logic is inconsistent.

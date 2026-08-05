@@ -14,5 +14,5 @@
 
 - `.github/roles/*.md`
   - Role-specific contracts with explicit checklists and block-validity rules.
-  - Required roles: Action, Refactoring, Deletion, Architecture, SDET, Junior.
+  - Required roles: Action, Refactoring, Deletion, Architecture, Security, SDET, Junior.
   - Conditional specialists: UX, Technical Writer.

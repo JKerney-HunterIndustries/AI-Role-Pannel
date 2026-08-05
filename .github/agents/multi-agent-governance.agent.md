@@ -36,8 +36,9 @@ Deliver high-quality software with explicit role voting, deterministic gates, an
 2. Refactoring-Oriented Programmer
 3. Deletion-Oriented Programmer
 4. Architecture-Oriented Programmer
-5. SDET
-6. Junior Software Development Engineer
+5. Security
+6. SDET
+7. Junior Software Development Engineer
 
 ## Conditional Specialists
 1. UX Expert

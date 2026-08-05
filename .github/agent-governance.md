@@ -27,6 +27,7 @@ Full role definitions are in the `roles/` directory. When invoking a role sub-ag
 | Refactoring | [roles/refactoring.md](./roles/refactoring.md) | Required |
 | Deletion | [roles/deletion.md](./roles/deletion.md) | Required |
 | Architecture | [roles/architecture.md](./roles/architecture.md) | Required |
+| Security | [roles/security-role.md](./roles/security-role.md) | Required |
 | SDET | [roles/sdet.md](./roles/sdet.md) | Required |
 | Junior | [roles/junior.md](./roles/junior.md) | Required |
 | UX | [roles/ux.md](./roles/ux.md) | Conditional specialist |
@@ -35,10 +36,10 @@ Full role definitions are in the `roles/` directory. When invoking a role sub-ag
 ## Gate Rules
 
 ### Activity Gates
-- requirements: blocked if Junior or SDET votes block.
-- design: blocked if Architecture, Junior, or SDET votes block.
-- implementation_plan: blocked if Action, Junior, or SDET votes block.
-- code_change acceptance: blocked if Junior or SDET votes block.
+- requirements: blocked if Junior, SDET, or Security votes block.
+- design: blocked if Architecture, Junior, SDET, or Security votes block.
+- implementation_plan: blocked if Action, Junior, SDET, or Security votes block.
+- code_change acceptance: blocked if Junior, SDET, or Security votes block.
 
 ### Specialist Gates (When UX Is Activated)
 - requirements and design: blocked if UX blocks within activated scope.

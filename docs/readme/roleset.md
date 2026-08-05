@@ -5,8 +5,9 @@ Always include these roles for code-changing governance:
 2. Refactoring
 3. Deletion
 4. Architecture
-5. SDET
-6. Junior
+5. Security
+6. SDET
+7. Junior
 
 Activate these specialists only when trigger conditions are present:
 1. UX
