@@ -1,4 +1,4 @@
-# Role: Security (Draft)
+# Role: Security
 
 ## AI-Optimized Contract
 - role_id: security
