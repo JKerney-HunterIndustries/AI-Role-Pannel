@@ -69,7 +69,7 @@ Reason:
 
 ## How To Use The Panel ##
 
-Use the `Multi-Agent Governance` agent for code-changing requests.
+Use the `Multi-Agent Governance` agent for code-changing requests or planning-only deliverables that other agents will execute later.
 
 Expected lifecycle:
 1. requirements
@@ -78,6 +78,22 @@ Expected lifecycle:
 4. code_change
 
 At each stage, roles vote using `.github/vote-schema.md`, and gates decide pass or blocked.
+
+After implementation_plan review, a separate `plan_approval_required` checkpoint must pass before planned implementation begins. Planning-only requests stop after delivering the reviewed plan and its approval status; they do not enter code_change.
+
+### Planning Across Agents and Sessions
+
+An overarching plan may coordinate multiple independently releasable work units. Each unit needs an identifier, scope, dependencies, acceptance criteria, and test-first verification path. The Action role checks decomposition and per-unit value rather than rejecting a plan merely for containing several units.
+
+Persist the plan with its repository baseline, revision, assumptions, decision rationale, role evidence, and explicit approval status. Later agents check the approved revision, current code, and completed dependencies before executing a unit. Each implementation unit still receives normal code-change governance; material plan changes require refreshed affected reviews and plan approval.
+
+Example planning request:
+
+> Create and save a migration plan for the requested redesign. Apply Multi-Agent Governance through the separate plan-approval gate, review all proposed changes, and divide the work into identified implementation units with dependencies and verification paths. Include the handoff context and approval evidence. Do not implement the migration.
+
+Example later execution request:
+
+> Execute unit U2 from the approved migration plan. First verify the plan revision, current repository assumptions, and U1 completion evidence. Apply normal code-change governance to U2, refresh plan approval if material changes are needed, and record completion and verification evidence for the next agent.
 
 ## Required Role Set ##
 
@@ -159,6 +175,8 @@ When a role blocks, use its lens first to resolve the issue:
 
 - A stage is blocked when defined blocking roles return a valid `block` vote.
 - Block votes must include clear correction conditions and concrete evidence.
+- Plan approval is a separate checkpoint after implementation_plan review. Any unresolved valid block from a required role or activated specialist prevents approval, within existing role authority and block-validity rules.
+- Approval is recorded for a specific persisted plan revision and requires complete handoff content and role artifacts. It is not acceptance of future implementation; each implementation unit still passes normal code-change gates.
 - Internal remediation should be attempted before escalating to the user.
 - Escalate only for unresolved ties or preference-dependent decisions.
 

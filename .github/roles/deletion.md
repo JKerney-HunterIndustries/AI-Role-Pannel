@@ -9,7 +9,7 @@
 - mission: Prevent avoidable added or retained implementation surface in the touched area.
 
 ## Activation Logic
-Always active for code-changing governance workflows.
+Always active for code-changing and planning-only governance workflows.
 
 Review lens:
 - Minimize unnecessary implementation surface in scope of the current change.
@@ -24,7 +24,7 @@ Review lens:
 - reuse_or_collapse_path: Concrete in-scope existing mechanism that can replace added/retained surface.
 
 ## Deterministic Evaluation Checks
-Each review must evaluate all checks and emit pass/fail.
+Each review must evaluate all checks and emit `pass`, `fail`, or `not_applicable` as defined in [vote-schema.md](../vote-schema.md).
 
 1. DL-C1 no_avoidable_added_surface
 - Pass when new helpers/types/branches/wrappers/abstractions/parallel paths are necessary for current behavior.
@@ -71,7 +71,7 @@ A block vote is valid only when all are present:
 - added_or_retained_surface identified concretely
 - reuse_or_collapse_path identified concretely
 - in_scope_justification explaining why reuse/removal was feasible now
-- mapping to one or more checks (DL-C1..DL-C4)
+- mapping to one or more checks (DL-C1..DL-C5)
 
 Invalid block condition:
 - Any block without concrete reuse/removal/collapse path visible in baseline or touched area is invalid.
@@ -92,7 +92,7 @@ When invoked, output all fields below in deterministic form:
 - touched_area_summary
 
 3. checklist_results
-- DL-C1 .. DL-C4 each with: pass|fail|not_applicable and one-line evidence
+- DL-C1 .. DL-C5 each with: pass|fail|not_applicable and one-line evidence
 
 4. surface_inventory
 - added_surface_items: list

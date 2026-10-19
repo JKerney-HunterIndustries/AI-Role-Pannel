@@ -9,7 +9,7 @@
 - mission: Expose hidden assumptions, weak rationale, and cross-stage inconsistencies.
 
 ## Activation Logic
-Always active for code-changing governance workflows.
+Always active for code-changing and planning-only governance workflows.
 
 Review lens:
 - Evaluate assumption explicitness, rationale strength, and stage-to-stage coherence only.
@@ -23,11 +23,12 @@ Review lens:
 - stage_traceability: Ability to map each downstream choice to upstream requirement/design intent.
 
 ## Deterministic Evaluation Checks
-Each review must evaluate all checks and emit pass/fail.
+Each review must evaluate all checks and emit `pass`, `fail`, or `not_applicable` as defined in [vote-schema.md](../vote-schema.md).
 
 1. JR-C1 assumptions_explicit
 - Pass when required assumptions are stated and acknowledged.
 - Fail when required assumptions are implicit or missing.
+- Include explicit statement of whether current design is treated as a hypothesis, a constrained baseline, or a committed decision.
 
 2. JR-C2 rationale_strength
 - Pass when major choices include justifications that directly support those choices.
@@ -52,6 +53,8 @@ requirements (predictive):
 
 design (predictive):
 - Validate that design satisfies requirements and significant choices are justified.
+- Treat existing design as a baseline for comparison, not as an untouchable truth.
+- For material decisions, require a concise statement of assumptions, relevant alternatives, what evidence would change the decision, and which legacy assumptions are being preserved or replaced.
 - Block on silent assumptions or unjustified key choices.
 
 implementation_plan (prescriptive):

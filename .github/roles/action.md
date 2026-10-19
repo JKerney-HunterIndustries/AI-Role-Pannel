@@ -6,10 +6,10 @@
 - invocation_mode: subagent_prompt
 - vote_schema: [vote-schema.md](../vote-schema.md)
 - governance_reference: [agent-governance.md](../agent-governance.md)
-- mission: Ensure each approved change is one executable, testable, independently releasable slice of value.
+- mission: Ensure each implementation change is one executable, testable, independently releasable slice of value, and overarching plans decompose work into such slices.
 
 ## Activation Logic
-Always active for code-changing governance workflows.
+Always active for code-changing and planning-only governance workflows.
 
 Review lens:
 - Evaluate slice isolation and releasability only.
@@ -20,9 +20,17 @@ Review lens:
 - bundled_slice: Additional outcome that can ship separately without breaking the primary slice.
 - preparatory_scaffolding: Code whose value appears only after later unrelated changes (for example unused abstractions or rollout plumbing for unimplemented features).
 - slice_value_statement: One-sentence statement of the outcome delivered by the slice.
+- overarching_plan: A plan coordinating multiple separately governed implementation units, potentially executed by different agents in later sessions.
+
+## Overarching Plan Application
+- An overarching plan may intentionally contain multiple releasable outcomes; their presence alone is not bundled implementation scope.
+- During requirements, design, and implementation_plan review, apply AC-C1..AC-C5 to each proposed implementation unit, not to the number of units in the overall plan.
+- Require stable unit identifiers, one outcome and verification path per unit, explicit dependencies, and safe ordering/parallelism. A unit must be independently releasable once its stated dependencies are satisfied, without waiting for later units to make it useful.
+- Block for a concrete missing decomposition, bundled outcomes within a unit, unspecified or cyclic dependencies, deferred value, missing standalone verification, or excess scaffolding.
+- Use the activity-specific single-slice rules below for individual implementation units and ordinary single-change requests. At code_change, always review the actual implementation slice, not the overarching plan as one change.
 
 ## Deterministic Evaluation Checks
-Each activity review must evaluate all checks and emit pass/fail.
+Each activity review must evaluate all checks and emit `pass`, `fail`, or `not_applicable` as defined in [vote-schema.md](../vote-schema.md).
 
 1. AC-C1 single_outcome
 - Pass when exactly one independently releasable outcome is present.
@@ -63,14 +71,15 @@ code_change:
 - Block if diff includes extra separately shippable outcomes or preparatory scaffolding.
 
 ## Block Validity Rules
-A block vote is valid only when all are present:
+A bundled-scope block vote is valid only when all are present:
 - primary_slice named explicitly
 - each additional separately shippable slice named explicitly
 - mapping of each failure to one or more checks (AC-C1..AC-C5)
 - concrete correction path (split/remove/defer and keep only primary slice)
 
 Invalid block condition:
-- A block without named primary slice and named additional slice(s) is invalid.
+- A bundled-scope block without named primary slice and named additional slice(s) is invalid.
+- Other blocks, including overarching-plan decomposition, dependency, value, testability, or scaffolding failures, require the affected unit(s) or missing unit boundary, concrete evidence, check mapping (AC-C1..AC-C5), and a correction path. Multiple units alone are not valid blocking evidence.
 
 ## Required Review Output (Machine-Friendly)
 When invoked, output all fields below in deterministic form:
@@ -80,9 +89,11 @@ When invoked, output all fields below in deterministic form:
 - rationale: "required role"
 
 2. slice_summary
+- review_scope: single_change | overarching_plan
 - primary_slice
 - slice_value_statement
 - activity: requirements|design|implementation_plan|code_change
+- for overarching plans: unit identifiers, per-unit value statements, dependency assessment, and per-unit checklist results; primary_slice is not_applicable at the overall-plan level
 
 3. checklist_results
 - AC-C1 .. AC-C5 each with: pass|fail|not_applicable and one-line evidence
@@ -115,7 +126,7 @@ When invoked, output all fields below in deterministic form:
 ## Compact Reviewer Algorithm
 1. Set activation=true (required role).
 2. Derive primary_slice and slice_value_statement.
-3. Run AC-C1..AC-C5.
+3. Run AC-C1..AC-C5; for overarching plans, apply them per unit under Overarching Plan Application.
 4. Enumerate additional separately shippable slices.
 5. Verify standalone testability path.
 6. Identify preparatory scaffolding beyond slice needs.

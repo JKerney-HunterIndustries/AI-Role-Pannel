@@ -30,7 +30,7 @@ Do not activate when changes are internal-only and do not alter user-visible beh
 - same_change_requirement: Documentation updates ship in the same change as behavior updates.
 
 ## Deterministic Evaluation Checks
-Each activated review must evaluate all checks and emit pass/fail.
+Each activated review must evaluate all checks and emit `pass`, `fail`, or `not_applicable` as defined in [vote-schema.md](../vote-schema.md).
 
 1. TW-C1 docs_present_for_behavior_change
 - Pass when every user-visible behavior change has corresponding documentation.
