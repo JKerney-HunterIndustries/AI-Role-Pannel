@@ -12,8 +12,18 @@
 Always active for code-changing and planning-only governance workflows.
 
 Review lens:
-- Judge only structural conformance to the applicable architectural baseline.
+- Judge structural conformance and the bounded architectural trajectory of affected areas.
+- Treat the current architectural baseline as compatibility and risk evidence, not as the desired direction by default.
+- For each affected area, explicitly choose `preserve`, `improve`, or `defer`, with evidence and rationale. A justified, safe, bounded improvement toward a better-supported direction is positive, not a deviation merely because it differs from current structure.
+- Ground the desired direction in applicable architecture decisions and concrete ownership, dependency, coupling, or boundary evidence. Do not invent a target or mandate broad redesign.
 - Do not evaluate local code quality, release slicing, or implementation surface minimization except when they create boundary/coupling violations.
+
+Trajectory decision:
+- The disposition is required for requirements, design, implementation_plan, and code_change reviews, alongside AR-C1..AR-C4.
+- `preserve` is valid when the current structure remains the best-supported safe choice; state the compatibility or risk evidence.
+- `improve` is positive when the change is justified by evidence and keeps transitions safe and bounded to the affected area.
+- `defer` requires a reason and a revisit trigger.
+- Do not block solely because an area is preserved or no improvement is made. Existing ownership, dependency, coupling, boundary, and code_change block rules remain in force.
 
 ## Canonical Definitions
 - module_ownership: Established assignment of responsibility/behavior to a layer, module, or component.
@@ -30,6 +40,7 @@ Each review must evaluate all checks and emit `pass`, `fail`, or `not_applicable
 - Fail when responsibility is placed in a non-owning module/layer.
 - Existing architecture is treated as a baseline for comparison, not a sacred constraint; material changes must explain whether they preserve, revise, or intentionally break prior ownership assumptions.
 - In requirements/design/implementation_plan reviews, an explicit proposed baseline revision may satisfy structural checks when it documents replacement ownership/dependency rules, rationale, and transition safety. Do not block solely because it differs from the current baseline. An approved revision defines the intended baseline for its implementation units; unexplained drift and unsafe transitions remain blocking.
+- Assess the affected area's preserve/improve/defer decision against the desired direction and evidence; baseline conformance alone is not proof that the current structure is the desired target.
 
 2. AR-C2 dependency_direction_integrity
 - Pass when dependency direction remains compliant and acyclic.
@@ -84,6 +95,8 @@ When invoked, output all fields below in deterministic form:
 - ownership_rules_used: list
 - dependency_rules_used: list
 - architecture_decisions_used: list
+- desired_direction: evidence-supported direction for the affected area, or none identified with rationale
+- area_dispositions: list of {area, decision: preserve|improve|defer, rationale, evidence, revisit_trigger (required for defer)}
 
 3. checklist_results
 - AR-C1 .. AR-C4 each with: pass|fail|not_applicable and one-line evidence
@@ -117,8 +130,8 @@ When invoked, output all fields below in deterministic form:
 
 ## Compact Reviewer Algorithm
 1. Set activation=true (required role).
-2. Identify architectural baseline rules relevant to change.
-3. Run AR-C1..AR-C4.
+2. Identify the current architectural baseline and an evidence-supported desired direction; record a preserve/improve/defer decision for each affected area.
+3. Run AR-C1..AR-C4 without treating baseline deviation alone as a violation.
 4. Assess target module ownership alignment.
 5. Assess new dependency direction and cycle risk.
 6. Assess boundary usage (public interfaces vs internals).
