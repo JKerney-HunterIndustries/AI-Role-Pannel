@@ -7,6 +7,19 @@ This file contains the detailed governance mechanics for the AI Role Panel gover
 - `planning_only`: create or materially revise a persisted plan for future code changes. Run `requirements`, `design`, and `implementation_plan`, then the separate plan-approval gate; do not implement the planned changes.
 - `analysis_only`: analyze, explain, or review without implementing software changes or creating/materially revising a plan. Run only the relevant activities and stop at the highest relevant activity.
 
+## Artifact Revision and Protection
+- Use ordinary human-readable revision labels to identify plans and other panel-generated artifacts. Revision labels support traceability; they are not integrity controls.
+- Do not add cryptographic hashes, fingerprints, digests, signatures, or equivalent protection to plans, role artifacts, reports, or other panel-generated content unless the user explicitly requests it.
+- If unrequested cryptographic metadata is already present, treat it as non-authoritative: never validate it or use a mismatch to block a gate, and remove it when editing that artifact.
+- Plan approval applies to the reviewed substantive content, not to an exact byte-for-byte file representation. A typo fix, clarity edit, or correction that does not change approved scope, behavior, constraints, design decisions, dependencies, acceptance criteria, verification obligations, or risk disposition is non-material. Record the correction and carry approval forward; do not block execution or require re-review solely because the file or revision label changed.
+- A change to any of those approved substantive elements is material: refresh affected role reviews and obtain plan approval for the revised content before execution.
+
+## Artifact and Note Retention
+- Create or persist an artifact only when it is strictly required by the user's request or an applicable panel review gate. Do not create documents merely to hold routine role notes, votes, or intermediate reasoning.
+- Required role reviews remain independent outputs, but may be kept in the active conversation or consolidated review record; they do not require one file per role or activity. Record invocation evidence in the required response or review record rather than creating separate files by default.
+- Keep only deliverables and evidence needed to satisfy the request or pass the applicable review, such as a requested implementation plan, changed source/tests, or explicitly required verification evidence.
+- Before finishing, remove temporary artifacts created by the panel for the current task that are no longer needed. Never remove pre-existing files or user-owned artifacts as part of routine cleanup.
+
 ## Specialist Activation Triggers
 - UX Expert: user flow or interaction changes, key journey behavior changes, copy, IA, navigation, form behavior, feedback behavior, and accessibility implications.
 - Technical Writer: user-visible behavior changes, CLI command changes, UI navigation or workflow changes, setup or run changes, error or status semantics changes, or explicit doc update requests.
@@ -58,15 +71,15 @@ Creation or material revision of a plan should be reviewed as if it represents t
 - Classify a request to create or materially revise a plan for future code changes as `planning_only`, not `analysis_only`. Run `requirements`, `design`, and `implementation_plan` with all required roles, actual role invocation evidence, and specialists activated by the proposed behavior.
 - A plan may coordinate multiple changes performed by different agents in later sessions. Review the full proposed scope, not just the act of writing the plan.
 - Persist the plan at an explicit repository or user-designated artifact path. Include enough context for another agent to proceed without the original conversation:
-  - plan identifier, revision, status (draft | blocked | approved), and repository baseline reference
+  - plan identifier, human-readable revision, status (draft | blocked | approved), and repository baseline reference
   - objective, scope, non-goals, constraints, assumptions, and relevant requirements/design references
   - material decisions, alternatives, tradeoffs, risks, and evidence that would require revisiting decisions
   - work units with stable identifiers, target modules/interfaces, one outcome per unit, dependencies, execution order, and which units may run in parallel
   - per-unit acceptance criteria, test-first verification paths including failure/edge cases, and applicable security, UX, documentation, rollout, and compatibility obligations
   - role votes, invocation/evidence references, accepted risks, unresolved blocks, and the separate plan-approval decision tied to this revision
 - Finish a planning-only request with the persisted plan and approval status. Do not implement the planned changes merely to complete the planning workflow.
-- Plan approval approves the proposed work, not future code. Before executing a unit, a later agent must check the approved revision, current repository state, dependency completion evidence, and applicable assumptions; then apply the normal code-change governance and acceptance gates to that unit.
-- Record completed units and verification evidence for later agents. Material changes to scope, design, dependencies, or verification invalidate approval of the changed work until affected role reviews are refreshed and the plan-approval gate passes for the revised plan. Do not silently inherit approval across material revisions.
+- Plan approval approves the proposed work, not future code. Before executing a unit, a later agent must check the approved substantive content, current repository state, dependency completion evidence, and applicable assumptions; then apply the normal code-change governance and acceptance gates to that unit.
+- Record completed units and verification evidence for later agents. Material changes to scope, design, dependencies, or verification invalidate approval of the changed work until affected role reviews are refreshed and the plan-approval gate passes for the revised content. Do not silently inherit approval across material revisions.
 
 ## Gate Rules
 
@@ -76,13 +89,13 @@ Creation or material revision of a plan should be reviewed as if it represents t
 - implementation_plan: blocked if Action, Junior, SDET, or Security votes block.
 - code_change acceptance: blocked if Junior, SDET, or Security votes block.
 
-Required roles and activated specialists must still provide a valid artifact for every applicable review activity, even when their vote is not itself a blocking gate at that activity. Apply the role's stated authority and block-validity rules before counting a block.
+Required roles and activated specialists must still provide a valid review output for every applicable review activity, even when their vote is not itself a blocking gate at that activity. The output may be transient or included in a consolidated review record; apply the role's stated authority and block-validity rules before counting a block.
 
 ### Plan Approval Gate
 - `plan_approval_required` is a separate approval checkpoint after implementation_plan review and before execution of planned changes. Passing the implementation_plan activity alone does not satisfy it.
 - Blocked while any required role or activated specialist has an unresolved valid block on the plan. Existing role authority, block-validity rules, and evidence requirements apply.
 - This gate applies to single-change and overarching multi-change plans, including planning-only deliverables. It uses the collected plan-review votes; duplicate invocations are not required solely because it is a separate checkpoint.
-- All required and activated specialist plan-review artifacts and the handoff content above must be present. Record pass | blocked against the exact plan revision; missing artifacts cannot produce approval.
+- All required and activated specialist plan-review artifacts and the handoff content above must be present. Record pass | blocked against the human-readable plan revision; missing artifacts cannot produce approval. Non-material corrections may carry that approval forward as described in Artifact Revision and Protection.
 - The activity-specific specialist thresholds below do not narrow this all-role plan-approval gate. Other activity and code-change acceptance gates remain unchanged.
 
 ### Specialist Gates (When UX Is Activated)
