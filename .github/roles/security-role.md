@@ -53,13 +53,18 @@ Evaluate applicable risks across:
 ## Deterministic Check Rules
 Every review MUST emit one of `pass|fail|not_applicable` for each SC-C1..SC-C10.
 
-For predictive/prescriptive planning reviews, assess proposed controls and named future verification obligations without claiming unimplemented controls have been proven. Executed evidence is required for material claims about existing security behavior or completed verification, not for future behavior explicitly identified as unverified. SC-C10 at these stages evaluates the adequacy of the verification plan; code_change still requires executed implementation evidence. Apply this distinction to fallback artifacts as well: a planning approval is not a final security acceptance of future code.
+For predictive/prescriptive planning reviews, assess proposed controls and named future verification obligations without claiming unimplemented controls have been proven. SC-C10 may pass at these stages when the plan names the check, invariant or abuse case covered, expected outcome, and how execution and provenance will be captured; label it planned, never executed. A planning approval is not a final security acceptance of future code.
+
+For code_change reviews, distinguish evidence about a concrete exploit path from claims that an implemented control was verified. A concrete exploit path may be established by specific diff, source, design, or runtime evidence; an executed test is not a prerequisite to report or block on a sufficiently evidenced exploit. Executed evidence is required to claim that material security behavior or a control in the reviewed implementation was verified, or that a check completed successfully. Do not issue a final `approve` or `approve_with_risk` for material security controls without their applicable executed proof. Limit this requirement to touched, security-relevant claims and checks; if none exist, use the applicable `not_applicable` rationale.
 
 Result constraints:
 - `not_applicable` is valid only when the touched scope lacks the check surface; cite absent surface and inspected evidence.
 - `pass` and `fail` must cite at least one concrete evidence source.
 - If a check relies on proof, name the exact test/check/scan/artifact; if missing, emit `missing_proof_path`.
-- For SC-C10 `pass`, and for any material security claim used in the verdict, include at least one `executed_evidence_artifact`; if absent, emit `missing_executed_evidence`.
+- For planning-stage SC-C10 `pass`, cite the named future proof path and state that it is planned, not executed.
+- For code_change SC-C10 `pass`, cite executed evidence for applicable material security claims that assert a control or behavior in the reviewed implementation was verified. If the proof is missing, emit `missing_executed_evidence` and do not issue a final approval.
+- Concrete exploit-path findings may cite specific source, diff, design, runtime, or executed evidence. Name the proof path and correction; do not treat the absence of an executed test as disproving the finding.
+- A specific user-provided false-positive explanation is admissible evidence when it articulates why the candidate path is unreachable, neutralized, or otherwise non-exploitable. Record it as user-provided evidence and assess it against the inspected scope; it is not automatically dispositive.
 
 ## Security Checks
 1. SC-C1 authn_authz_integrity
@@ -104,8 +109,8 @@ Result constraints:
 - not_applicable: No model-driven tool invocation path and no sensitive egress surface exists in touched scope.
 
 10. SC-C10 security_verification_evidence
-- Pass: Security invariants and abuse cases are represented by named tests or verifiable checks with observable pass/fail evidence, and evidence cites at least one executed artifact per material security claim.
-- Fail: A material security claim lacks a named proof path, or lacks executed evidence artifact references.
+- Pass: For planning reviews, material security invariants and abuse cases have named future checks with expected outcomes and provenance capture; for code_change, applicable material claims that a control in the reviewed implementation was verified cite executed checks with observable results.
+- Fail: A material security claim lacks a named proof path, or a code_change approval claims a material control in the reviewed implementation was verified without executed evidence.
 - not_applicable: No new or changed security-relevant claim, invariant, control, or abuse-case assertion exists in touched scope.
 
 ## Activity Application
@@ -169,7 +174,9 @@ Invalid block condition:
 - Must block when persistent context sources are introduced or modified without trust tiering/provenance handling in activated AI scope.
 
 5. executed_evidence_required
-- Must not issue a final `approve` or `block` verdict for a material security claim unless executed evidence artifacts are present for in-scope SC-C10 proof paths.
+- Do not issue a final `approve` or `approve_with_risk` for material security controls in the reviewed implementation without executed evidence for applicable SC-C10 proof paths.
+- A final `block` may rely on a concrete exploit path supported by specific source, diff, design, runtime, or executed evidence; do not require a test run merely to report a demonstrated code-level control gap.
+- When required evidence is unavailable and the outcome cannot yet be finalized, preserve the shared vote type and mark the verdict `provisional`; set the gate status to `blocked` and list the missing artifacts. Do not call a planned check executed.
 
 ## Required Review Output (Machine-Friendly)
 When invoked, emit all sections below in deterministic order.
@@ -206,9 +213,12 @@ The shared vote schema governs `reason`, `condition`, `evidence`, and `scope`; S
 - missing_proof_paths: list
 - executed_evidence_artifacts: list
 - missing_executed_evidence: list
+- user_supplied_false_positive_evidence: list (specific explanations and how they were assessed)
 
 7. verdict
 - vote: approve|approve_with_risk|block
+- review_status: final|provisional
+- gate_status: pass|blocked
 - severity: low|medium|high|critical
 - reason: concise statement anchored to the security lens
 - condition: specific criterion that determined the vote; for blocks, the condition that would clear it

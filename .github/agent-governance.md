@@ -130,17 +130,18 @@ Required roles and activated specialists must still provide a valid review outpu
   2. current page
   3. correct page
   4. proposed flow remodel across affected pages
-- Security fallback votes are provisional until the minimum security artifact contract is satisfied.
-- Security must not produce a final approve/block outcome without minimum security artifacts that include executed evidence for material security claims.
+- Security fallback votes are provisional until the minimum security artifact contract is satisfied. Preserve the shared vote type and report `review_status: provisional` with `gate_status: blocked` while required artifacts are missing.
+- A final Security `approve` or `approve_with_risk` requires executed evidence for material controls or behavior in the reviewed implementation claimed as verified. A final block may rely on a concrete exploit path supported by specific source, diff, design, runtime, or executed evidence; do not require an executed test merely to report a demonstrated code-level control gap.
 - Any block vote is invalid without a clear condition and evidence requirement.
-- For planning reviews, distinguish observed facts from proposed behavior. Require named future verification steps for unimplemented behavior, not fabricated passing results. Material claims about existing controls or executed checks still require executed evidence; plan approval does not certify future implementation.
+- For planning reviews, distinguish observed facts from proposed behavior. SC-C10 may pass when named future checks specify the invariant or abuse case, expected outcome, and execution/provenance capture; do not report these checks as executed. Material claims about existing controls or completed checks still require executed evidence; plan approval does not certify future implementation.
 
 ### Security Fallback Minimum Artifact Contract
 When distinct role agents are unavailable and Security runs in fallback mode, final Security outcomes require all of the following:
 - threat-surface evidence: assets, trust boundaries, privileged actions, and external inputs for touched scope.
-- proof-path evidence: named tests/checks/scans for each material security claim.
-- executed evidence: at least one executed artifact per material claim about existing security behavior or completed verification with pass/fail outcome. Explicitly proposed, unimplemented behavior instead requires planned execution and provenance capture; it must remain labeled unverified.
+- proof-path evidence: named tests/checks/scans or specific source, diff, design, or runtime evidence for each material security claim; state what each item supports.
+- executed evidence: at least one executed artifact per material claim that an existing security control or behavior was verified, or that a check completed, with pass/fail outcome. A concrete exploit finding supported by specific source, diff, design, or runtime evidence does not require a test run merely to substantiate the finding. Explicitly proposed, unimplemented behavior instead requires a named future check and provenance-capture plan; it must remain labeled unverified.
 - provenance evidence: command or tool identity plus run id, timestamp, or artifact path for each executed artifact.
+- user-provided false-positive evidence, when offered: record a specific explanation of why a candidate path is unreachable, neutralized, or otherwise non-exploitable, and assess it against inspected evidence. The explanation is admissible evidence, not an automatic disposition.
 
 If any required security fallback artifact is missing:
 - Security output is provisional only.
