@@ -12,17 +12,8 @@
 Always active for code-changing and planning-only governance workflows.
 
 Review lens:
-- Compare the touched area against the current maintainability and style baseline as compatibility and risk evidence, not as the desired direction by default.
-- For each touched area, explicitly choose `preserve`, `improve`, or `defer`, with evidence and rationale. A justified, safe, bounded improvement to clarity, readability, or maintainability is positive, not a regression merely because it differs from current style.
-- Ground the desired direction in concrete maintainability evidence and applicable project conventions; do not introduce subjective formatting churn or mandate broad cleanup.
+- Compare touched area against maintainability baseline.
 - Evaluate only local maintainability trajectory and avoidable structural debt in scope of current change.
-
-Trajectory decision:
-- The disposition is required for requirements, design, implementation_plan, and code_change reviews, alongside RF-C1..RF-C6.
-- `preserve` is valid when the touched area remains maintainable and consistent with applicable conventions; state the evidence.
-- `improve` is positive when the improvement is justified, safe, and bounded to the touched area.
-- `defer` requires a reason and a revisit trigger.
-- Do not block solely because an area is preserved or no improvement is made; existing concrete-regression and block-validity rules remain in force.
 
 ## Canonical Definitions
 - maintainability_baseline: Parent commit, merge base, or agreed pre-change reference for touched area.
@@ -36,7 +27,7 @@ Trajectory decision:
 Each review must evaluate all checks and emit `pass`, `fail`, or `not_applicable` as defined in [vote-schema.md](../vote-schema.md).
 
 1. RF-C1 no_local_maintainability_regression
-- Pass when complexity/duplication/coupling/responsibility split in the touched area is improved or not worsened, and the preserve/improve/defer decision is evidence-based. Positively assess justified, safe, bounded improvements instead of treating a baseline difference as a regression.
+- Pass when complexity/duplication/coupling/responsibility split in touched area is improved or not worsened.
 - Fail when touched area is materially harder to understand/modify/test/extend than baseline.
 
 2. RF-C2 simplest_behavior_preserving_structure
@@ -112,8 +103,6 @@ When invoked, output all fields below in deterministic form:
 2. baseline_reference
 - baseline_name
 - touched_area_summary
-- desired_direction: evidence-supported maintainability/style direction for the touched area, or none identified with rationale
-- area_dispositions: list of {area, decision: preserve|improve|defer, rationale, evidence, revisit_trigger (required for defer)}
 
 3. checklist_results
 - RF-C1 .. RF-C6 each with: pass|fail|not_applicable and one-line evidence
@@ -155,14 +144,13 @@ When invoked, output all fields below in deterministic form:
 ## Compact Reviewer Algorithm
 1. Set activation=true (required role).
 2. Establish maintainability_baseline and touched area.
-3. Identify an evidence-supported desired direction and record a preserve/improve/defer decision for each touched area; do not treat baseline difference alone as regression.
-4. Run RF-C1..RF-C5.
-5. Run RF-C6 and record abstraction-need assessment for touched files.
-6. Compare before-vs-after structure deltas.
-7. Evaluate simpler alternatives and cleanup handling.
-8. Enforce temporal-coupling hard-block guardrail.
-9. Apply block validity rules and emit vote using vote schema.
-10. Add overlap-policy output with at least one cross-role agreement/disagreement and one underweighted concern.
+3. Run RF-C1..RF-C5.
+4. Run RF-C6 and record abstraction-need assessment for touched files.
+5. Compare before-vs-after structure deltas.
+6. Evaluate simpler alternatives and cleanup handling.
+7. Enforce temporal-coupling hard-block guardrail.
+8. Apply block validity rules and emit vote using vote schema.
+9. Add overlap-policy output with at least one cross-role agreement/disagreement and one underweighted concern.
 
 ## Boundary
 Refactoring does not own release slicing, feature correctness, or broad subsystem redesign; it judges only local structural trajectory in the touched area.
