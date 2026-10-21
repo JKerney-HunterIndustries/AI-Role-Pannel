@@ -18,6 +18,9 @@ Deliver high-quality software with explicit role voting, deterministic gates, an
 - Do not ask the user to trigger internal phases.
 - Resolve missing artifacts and failed gates internally when possible.
 - Escalate to the user only for unresolved ties or preference-dependent decisions.
+- Seek better task-scoped approaches; treat current architecture and coding style as evidence, not presumptively correct. Apply the scoped improvement decision rule in [agent-governance.md](../agent-governance.md).
+- Before implementation, record meaningful alternatives and task-specific selection/retention reasons, or evidence that none qualifies. Carry the selected improvements and proof paths through plan and acceptance; defer unrelated broad redesign explicitly.
+- Preserve Junior's assumptions/rationale/stage-coherence lens and require newcomer discovery, code-flow, and names/rationale checks. Do not accept subjective-style-only vetoes or weaken Security gates.
 
 ## Intent-First Interpretation
 - Interpret prompts by intent unless the user explicitly requests literal behavior.
@@ -64,12 +67,14 @@ Output a Role Engagement Record with:
 - activated specialists: UX yes/no + rationale, Technical Writer yes/no + rationale
 - required roles list with artifact_present true/false
 - missing roles: list or "none"
+- scoped improvement decision record: affected scope, meaningful alternatives (or why none qualifies), choice/retention rationale, deferred unrelated improvements, and proof paths
 - gate status: pass | blocked
 - next action
 
 Fail-closed:
 - Incomplete intent translation => blocked.
 - Missing required role artifacts => blocked.
+- Missing scoped improvement evidence => apply the role-grounded validity conditions in [agent-governance.md](../agent-governance.md); baseline conformity alone cannot clear the gate.
 
 ## Activities
 1. requirements

@@ -10,19 +10,22 @@ This section helps users quickly understand each role's review lens and likely b
 - Blocks when a change mixes multiple shippable outcomes or adds preparatory scaffolding not needed now.
 
 2. Refactoring
-- Cares most about maintainability trajectory in the touched area.
+- Seeks meaningful task-scoped improvements to clarity and maintainability in the touched area.
 - Looks for avoidable complexity, duplication, coupling, mixed responsibilities, and unmitigated temporal coupling.
-- Blocks when the change makes local maintainability worse versus baseline or skips in-scope cleanup that should happen now.
+- Compares meaningful local alternatives; the baseline is evidence, not the default winner.
+- Blocks for concrete regressions or avoidable retained debt feasible to fix for this task, not general messiness or style preference. Retention must address the alternative's benefit and costs.
 
 3. Deletion
-- Cares most about minimizing avoidable implementation surface.
+- Seeks simpler task-scoped ways to deliver the outcome by minimizing unnecessary implementation surface.
 - Looks for unnecessary new abstractions, duplicate paths, future-only indirection, and obsolete retained code.
-- Blocks when existing code could be reused/collapsed or when obsolete/duplicate surface remains without strong in-scope justification.
+- Compares reuse, removal, collapse, and narrower replacement; existing mechanisms are not automatically preferable.
+- Blocks when concrete avoidable surface remains without task-specific justification against a feasible in-scope alternative.
 
 4. Architecture
 - Cares most about boundaries, ownership, dependency direction, and coupling control.
 - Looks for layer drift, cross-boundary reach-through, dependency reversals, and cycle risk.
-- Blocks when the change violates established ownership or architectural dependency rules.
+- Evaluates task-appropriate structure, including justified scoped ownership/rule revisions with affected consumers and verification.
+- Blocks for concrete structural failures or missing predictive comparison/revision evidence, not baseline nonconformance alone. At code acceptance, only concrete boundary, dependency-direction, cycle, or unintended-coupling violations can block.
 
 5. Security
 - Cares most about exploitability, impact, and control adequacy in the touched scope.
@@ -35,9 +38,10 @@ This section helps users quickly understand each role's review lens and likely b
 - Blocks when behavior changes are not backed by sufficient automated tests or when testability gaps lack a valid exception path.
 
 7. Junior
-- Cares most about reasoning quality and cross-stage coherence.
-- Looks for hidden assumptions, weak rationale, overconfidence, and drift between requirements, design, plan, and implementation.
-- Blocks when key assumptions are unstated or when stage-to-stage logic is inconsistent.
+- Cares most about reasoning quality, cross-stage coherence, and discoverability/understandability for a new developer on the team.
+- Preserves checks for hidden assumptions, weak rationale, overconfidence, and drift between requirements, design, plan, and implementation.
+- Traces how a newcomer finds where behavior belongs, follows entry-to-outcome flow, and understands names and rationale without unwritten team knowledge.
+- Blocks for concrete assumption/coherence or discovery/flow/name/rationale gaps with task/location evidence and a correction path, not unfamiliarity or preferred naming style. Does not take over Architecture, Refactoring, or SDET authority.
 
 <!-- (dl (# Conditional Specialists)) -->
 

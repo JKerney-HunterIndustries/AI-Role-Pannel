@@ -6,7 +6,7 @@
 - invocation_mode: subagent_prompt
 - vote_schema: [vote-schema.md](../vote-schema.md)
 - governance_reference: [agent-governance.md](../agent-governance.md)
-- mission: Prevent local maintainability regressions and avoidable structural debt in the touched area.
+- mission: Seek meaningful task-scoped improvements to clarity and maintainability while preventing local regressions and avoidable structural debt.
 
 ## Activation Logic
 Always active for code-changing governance workflows.
@@ -14,12 +14,13 @@ Always active for code-changing governance workflows.
 Review lens:
 - Compare touched area against maintainability baseline.
 - Evaluate only local maintainability trajectory and avoidable structural debt in scope of current change.
+- Apply the shared scoped improvement decision rule: baseline style is evidence, not the default winner. Seek meaningful local improvements and justify retaining existing structure when a meaningful alternative exists.
 
 ## Canonical Definitions
 - maintainability_baseline: Parent commit, merge base, or agreed pre-change reference for touched area.
 - touched_area: Changed code plus directly affected nearby methods/types/call paths needed for local judgment.
 - local_regression: Touched area becomes harder to understand, modify, test, or extend versus baseline.
-- avoidable_structural_debt: New duplication, coupling, temporal coupling, mixed responsibility, or premature abstraction where simpler behavior-preserving alternative existed.
+- avoidable_structural_debt: Added or retained duplication, coupling, temporal coupling, mixed responsibility, or premature abstraction where a feasible in-scope behavior-preserving alternative offers a material task-relevant improvement.
 - missing_abstraction_signal: Touched file shows repeated patterns or mixed responsibilities where a local behavior-preserving extraction would reduce maintainability risk.
 - temporal_coupling: Correctness depends on fragile call ordering/state sequencing rather than explicit contracts.
 
@@ -31,16 +32,16 @@ Each review must evaluate all checks and emit pass/fail.
 - Fail when touched area is materially harder to understand/modify/test/extend than baseline.
 
 2. RF-C2 simplest_behavior_preserving_structure
-- Pass when chosen structure is the simplest viable local design preserving required behavior.
-- Fail when a simpler local behavior-preserving alternative was available but not used.
+- Pass when meaningful local behavior-preserving alternatives are compared and the chosen structure has task-specific tradeoff evidence, or evidence explains why none qualifies.
+- Fail when a feasible simpler alternative with a material local benefit is ignored or retention relies only on baseline style.
 
 3. RF-C3 no_premature_abstraction
 - Pass when abstraction/indirection is required by current behavior.
 - Fail when abstraction/generalization is speculative or future-only.
 
 4. RF-C4 in_scope_cleanup_when_needed
-- Pass when obvious in-scope cleanup is handled before/alongside the change if omission worsens maintainability.
-- Fail when cleanup is deferred and touched area becomes harder to modify.
+- Pass when task-relevant feasible cleanup is handled or retention/deferral has a concrete tradeoff justification.
+- Fail when avoidable in-scope debt is retained without addressing a concrete alternative and its task-relevant benefit, even if unchanged from baseline.
 
 5. RF-C5 temporal_coupling_control
 - Pass when no new temporal coupling is introduced, or if required, it is explicitly mitigated and documented.
@@ -55,7 +56,7 @@ Each review must evaluate all checks and emit pass/fail.
 ## Activity-Specific Application
 requirements (predictive):
 - Identify target area and baseline structural risk.
-- Block if request expands high-risk messy area without scoped cleanup strategy.
+- Block only for specific task-relevant structural risk or retained avoidable debt with a feasible local alternative, not general messiness.
 
 design (predictive):
 - Compare design path to current local structure.
@@ -69,19 +70,20 @@ implementation_plan (prescriptive):
 
 code_change (observed):
 - Compare diff to maintainability_baseline for touched area.
-- Block only for concrete local regressions visible in diff.
-- Treat unaddressed clear missing-abstraction signals in touched files as a concrete local maintainability regression when in-scope to fix.
+- Block only for concrete local regressions or avoidable retained debt evidenced in the diff/touched area and feasible to address for this task.
+- Evaluate missing-abstraction signals without mandating extraction; compare simpler inline, removal, or extraction options and their costs.
 
 ## Block Validity Rules
 A block vote is valid only when all are present:
 - baseline_reference named
 - touched_area identified
-- concrete_before_vs_after_regression described
+- concrete_before_vs_after_regression or avoidable_retained_debt described with task-specific impact and feasibility
 - simpler_local_alternative identified (or explicit temporal-coupling mitigation gap)
 - mapping to one or more checks (RF-C1..RF-C6)
+- correction and evidence needed to clear the block, addressing any selection/retention rationale
 
 Invalid block condition:
-- Any block without concrete before-vs-after local structural regression evidence is invalid.
+- Any block without concrete local regression or retained-debt evidence, task relevance, and a feasible correction is invalid. Style preference or unchanged mess alone cannot block.
 
 ## Mandatory Guardrails
 1. no_general_mess_blocking
@@ -116,6 +118,8 @@ When invoked, output all fields below in deterministic form:
 5. alternatives_analysis
 - simpler_alternatives_considered: list
 - chosen_structure_rationale
+- retention_or_deferral_justification: task-specific tradeoffs when a meaningful alternative exists; otherwise evidence that none qualifies
+- unrelated_improvements_excluded: list + scope rationale
 
 6. cleanup_and_debt
 - cleanup_done: list
