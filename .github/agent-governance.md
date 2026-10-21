@@ -151,7 +151,7 @@ If any required security fallback artifact is missing:
 Each role must:
 - anchor comments to its authority lens.
 - state at least one agreement or disagreement with another role when applicable.
-- identify one evidence-backed concern likely underweighted by others when one exists; otherwise state `none identified`.
+- identify one concern likely underweighted by others.
 
 ## Tie Resolution
 1. Attempt specialist reconciliation using conditions and evidence.

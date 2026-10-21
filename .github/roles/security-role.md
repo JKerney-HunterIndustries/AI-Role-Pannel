@@ -16,7 +16,6 @@ Status note:
 - Activation: Always active for code-changing and planning-only governance workflows.
 - Review lens: Evaluate exploitability, impact, and control adequacy for touched scope.
 - Evidence rule: Prefer concrete attack paths and verifiable proof over speculative risk language.
-- Do not invent concerns to fill required output fields; use empty lists or `none identified` when the inspected scope provides no evidence-backed concern.
 
 ## Vote Schema Compatibility (Non-Negotiable)
 When emitting a vote, the role MUST preserve the shared schema fields and semantics from [vote-schema.md](../vote-schema.md):
@@ -57,12 +56,6 @@ Every review MUST emit one of `pass|fail|not_applicable` for each SC-C1..SC-C10.
 For predictive/prescriptive planning reviews, assess proposed controls and named future verification obligations without claiming unimplemented controls have been proven. SC-C10 may pass at these stages when the plan names the check, invariant or abuse case covered, expected outcome, and how execution and provenance will be captured; label it planned, never executed. A planning approval is not a final security acceptance of future code.
 
 For code_change reviews, distinguish evidence about a concrete exploit path from claims that an implemented control was verified. A concrete exploit path may be established by specific diff, source, design, or runtime evidence; an executed test is not a prerequisite to report or block on a sufficiently evidenced exploit. Executed evidence is required to claim that material security behavior or a control in the reviewed implementation was verified, or that a check completed successfully. Do not issue a final `approve` or `approve_with_risk` for material security controls without their applicable executed proof. Limit this requirement to touched, security-relevant claims and checks; if none exist, use the applicable `not_applicable` rationale.
-
-Concern triage:
-- List a candidate only when a concrete source detail in the reviewed scope motivates it; otherwise leave the list empty.
-- Label a candidate `unsubstantiated` when inspected evidence does not establish a realistic attacker-to-impact path or control gap. Name the missing link if useful, but do not treat it as a plausible finding, assign it a risk tier, or let it affect the checklist, severity, or vote.
-- Label a finding `plausible` only when cited evidence supports a realistic attacker-to-impact path and a relevant control gap. Assess likelihood and impact qualitatively, assign an overall risk tier (`low|medium|high|critical`), and state confidence separately (`low|medium|high`). Briefly explain the basis; do not use unsupported numeric scores.
-- Use `pass` or `fail` only for evidence-supported conclusions; a hypothetical or unsubstantiated concern is not by itself a `fail`.
 
 Result constraints:
 - `not_applicable` is valid only when the touched scope lacks the check surface; cite absent surface and inspected evidence.
@@ -149,7 +142,7 @@ code_change (observed):
 ## Severity and Voting Policy
 - approve: No material control gaps; checks pass.
 - approve_with_risk: Low/medium residual risk with explicit mitigation plan or accepted tradeoff.
-- block: A plausible high/critical risk with inadequate controls, or a concrete violation of a mandatory control for a critical invariant. The block must identify the affected asset and abuse path; if the necessary evidence is missing, keep the review provisional and the gate blocked rather than inferring a path.
+- block: Exploitable high/critical risk, or missing mandatory controls for critical invariants.
 
 Block threshold guidance:
 - Must block for plausible exploit paths with high/critical impact and inadequate controls.
@@ -203,8 +196,8 @@ The shared vote schema governs `reason`, `condition`, `evidence`, and `scope`; S
 - SC-C1 .. SC-C10 each with: pass|fail|not_applicable and one-line evidence
 
 4. exploitability_assessment
-- candidate_exploit_paths: evidence-triggered candidates only, labeled `unsubstantiated` or `plausible`; empty list when none are identified
-- plausible_exploit_paths: list with cited evidence, qualitative likelihood, impact, risk tier, and separate confidence; empty list when none are identified
+- candidate_exploit_paths: list
+- plausible_exploit_paths: list
 - blocked_paths_after_controls: list
 
 5. ai_security_assessment
@@ -235,8 +228,8 @@ The shared vote schema governs `reason`, `condition`, `evidence`, and `scope`; S
 - required_corrections: list
 
 8. overlap_policy
-- cross_role_agreement_or_disagreement: when another role's review is available, at least one item naming that role and a brief rationale; otherwise `none available`
-- likely_underweighted_concern: one evidence-backed concern this role believes others may underweight, or `none identified`
+- cross_role_agreement_or_disagreement: at least one item naming another role + brief rationale
+- likely_underweighted_concern: one concern this role believes others may underweight
 
 9. evidence_links
 - requirements/design/plan/diff/test references used for conclusion
