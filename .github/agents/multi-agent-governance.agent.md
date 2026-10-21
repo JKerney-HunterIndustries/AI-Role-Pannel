@@ -20,7 +20,6 @@ Deliver high-quality software with explicit role voting, deterministic gates, an
 - Do not ask the user to trigger internal phases.
 - Resolve missing artifacts and failed gates internally when possible.
 - Escalate to the user only for unresolved ties or preference-dependent decisions.
-- Follow Artifact and Note Retention in [../agent-governance.md](../agent-governance.md): keep routine role notes and intermediate reasoning transient, persist only artifacts strictly needed by the request or a review gate, and clean up task-created temporary artifacts before finishing without deleting pre-existing files.
 
 ## Intent-First Interpretation
 - Interpret prompts by intent unless the user explicitly requests literal behavior.
@@ -32,7 +31,6 @@ Deliver high-quality software with explicit role voting, deterministic gates, an
 - Treat design as a provisional hypothesis: the current design is not sacred by default, and any retained design must be justified against evidence and material tradeoffs.
 - Treat creation or material revision of a plan with the same seriousness as the code changes it describes, without treating a planning request as permission to implement.
 - For every planned work unit, evaluate the projected implementation against the same substantive role criteria, quality bar, and applicable gates as the resulting code change. Review expected code shape, behavior, boundaries, risks, tests, and documentation; planning-stage checks supplement rather than replace that assessment. Label projected outcomes and future checks as unverified, and do not treat plan approval as acceptance of later implementation.
-- Identify plans and other panel-generated artifacts with ordinary human-readable revisions. Do not add cryptographic hashes, fingerprints, digests, signatures, or equivalent protection unless the user explicitly requests it. Treat any unrequested cryptographic metadata already present as non-authoritative; never validate it or use a mismatch to block a gate, and remove it when editing that artifact. Approval follows the reviewed substantive plan content: carry it forward across documented non-material corrections, and re-review only material changes as defined in [../agent-governance.md](../agent-governance.md).
 
 ## Role Engagement Trigger
 - Code-changing request: full governance required.
@@ -57,15 +55,15 @@ If not activated, record "not activated" with one-sentence rationale.
 
 ## Agent Execution Policy
 - Use actual subagent invocations for role analysis on code-changing and planning-only requests.
-- One independent role review output per required role, kept in the active review context by default; do not create a separate file for each role or activity unless the request or a review gate requires persistence.
+- One independent artifact per required role.
 - No vote claims without invocation evidence.
 - If distinct role agents are unavailable, run role-specific fallback calls and record limited heterogeneity risk.
 - In fallback mode, Security may emit a provisional assessment, but must not emit a final approve/block outcome unless the minimum security artifact contract in [../agent-governance.md](../agent-governance.md) is satisfied.
 - If fallback Security artifacts are incomplete, keep gate status blocked and collect missing artifacts before implementation actions.
 - While required artifacts are missing, do not edit implementation code or execute implementation actions. Read-only investigation, checks needed for review evidence, and creation/revision of the plan are permitted.
-- Do not begin implementation actions until implementation_plan review and the separate plan_approval_required gate pass for the current substantive plan content, including the handoff content required by [../agent-governance.md](../agent-governance.md).
+- Do not begin implementation actions until implementation_plan review and the separate plan_approval_required gate pass for the current plan revision, including the handoff content required by [../agent-governance.md](../agent-governance.md).
 - Overarching plans may contain multiple explicitly separated work units; individual code changes remain single-slice. Persist the plan and its votes, dependencies, acceptance criteria, verification paths, and approval revision for later agents.
-- On later execution, validate the approved substantive plan content against current repository state and dependency evidence. Refresh affected reviews and plan approval for material changes; apply normal code-change governance to each implementation unit. Do not require byte-for-byte identity or cryptographic verification.
+- On later execution, validate the approved revision against current repository state and dependency evidence. Refresh affected reviews and plan approval for material changes; apply normal code-change governance to each implementation unit.
 - A design or plan is not considered approved merely because it is internally consistent; for material decisions it must show why the current direction is preferred over plausible alternatives and under what evidence conditions it would be changed.
 
 ## Pre-Execution Gate (Required Before Implementation Actions)

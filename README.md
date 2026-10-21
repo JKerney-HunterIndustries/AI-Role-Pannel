@@ -87,12 +87,6 @@ An overarching plan may coordinate multiple independently releasable work units.
 
 Persist the plan with its repository baseline, revision, assumptions, decision rationale, role evidence, and explicit approval status. Later agents check the approved revision, current code, and completed dependencies before executing a unit. Each implementation unit still receives normal code-change governance; material plan changes require refreshed affected reviews and plan approval.
 
-Use ordinary human-readable revision labels for plans and other panel-generated artifacts. Do not add cryptographic hashes, fingerprints, digests, signatures, or equivalent protection unless explicitly requested. Treat unrequested cryptographic metadata already present as non-authoritative; never validate it or use a mismatch to block a gate, and remove it when editing that artifact. Approval follows the reviewed substantive plan content, not its exact bytes: document typo fixes, clarity edits, and other non-material corrections and carry approval forward. Re-review is required when a correction changes approved scope, behavior, constraints, design decisions, dependencies, acceptance criteria, verification obligations, or risk disposition.
-
-### Artifact and Note Retention ###
-
-Create or persist only artifacts strictly needed by the request or an applicable review gate. Keep role reviews and intermediate notes in the active conversation or a consolidated review record; do not create a separate file for each role or activity by default. Before finishing, remove temporary artifacts created by the panel for the current task that are no longer needed. Do not remove pre-existing or user-owned files during routine cleanup.
-
 Example planning request:
 
 > Create and save a migration plan for the requested redesign. Apply Multi-Agent Governance through the separate plan-approval gate, review all proposed changes, and divide the work into identified implementation units with dependencies and verification paths. Include the handoff context and approval evidence. Do not implement the migration.
