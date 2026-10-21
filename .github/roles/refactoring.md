@@ -9,7 +9,7 @@
 - mission: Prevent local maintainability regressions and avoidable structural debt in the touched area.
 
 ## Activation Logic
-Always active for code-changing and planning-only governance workflows.
+Always active for code-changing governance workflows.
 
 Review lens:
 - Compare touched area against maintainability baseline.
@@ -24,7 +24,7 @@ Review lens:
 - temporal_coupling: Correctness depends on fragile call ordering/state sequencing rather than explicit contracts.
 
 ## Deterministic Evaluation Checks
-Each review must evaluate all checks and emit `pass`, `fail`, or `not_applicable` as defined in [vote-schema.md](../vote-schema.md).
+Each review must evaluate all checks and emit pass/fail.
 
 1. RF-C1 no_local_maintainability_regression
 - Pass when complexity/duplication/coupling/responsibility split in touched area is improved or not worsened.

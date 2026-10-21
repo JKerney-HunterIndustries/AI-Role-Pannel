@@ -9,7 +9,7 @@
 - mission: Ensure behavior is provable by automated tests with observable outcomes, failure coverage, and edge-case coverage.
 
 ## Activation Logic
-Always active for code-changing and planning-only governance workflows.
+Always active for code-changing governance workflows.
 
 Review lens:
 - Evaluate testability and evidence quality of behavior claims.
@@ -23,7 +23,7 @@ Review lens:
 - sufficient_coverage: Changed behavior covered by automated tests including failure path and expected edge cases.
 
 ## Deterministic Evaluation Checks
-Each review must evaluate all checks and emit `pass`, `fail`, or `not_applicable` as defined in [vote-schema.md](../vote-schema.md).
+Each review must evaluate all checks and emit pass/fail.
 
 1. SD-C1 claims_are_testable
 - Pass when each stated behavior can be expressed as a testable claim with observable outcome.

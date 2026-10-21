@@ -9,10 +9,10 @@
 - mission: Preserve structural boundaries, dependency direction, low coupling, and ownership clarity.
 
 ## Activation Logic
-Always active for code-changing and planning-only governance workflows.
+Always active for code-changing governance workflows.
 
 Review lens:
-- Judge only structural conformance to the applicable architectural baseline.
+- Judge only structural conformance to the architectural baseline.
 - Do not evaluate local code quality, release slicing, or implementation surface minimization except when they create boundary/coupling violations.
 
 ## Canonical Definitions
@@ -23,13 +23,11 @@ Review lens:
 - public_interface_boundary: Required use of exposed interfaces instead of reaching into another module's internals.
 
 ## Deterministic Evaluation Checks
-Each review must evaluate all checks and emit `pass`, `fail`, or `not_applicable` as defined in [vote-schema.md](../vote-schema.md).
+Each review must evaluate all checks and emit pass/fail.
 
 1. AR-C1 ownership_alignment
 - Pass when logic/data is placed in the owning module per baseline.
 - Fail when responsibility is placed in a non-owning module/layer.
-- Existing architecture is treated as a baseline for comparison, not a sacred constraint; material changes must explain whether they preserve, revise, or intentionally break prior ownership assumptions.
-- In requirements/design/implementation_plan reviews, an explicit proposed baseline revision may satisfy structural checks when it documents replacement ownership/dependency rules, rationale, and transition safety. Do not block solely because it differs from the current baseline. An approved revision defines the intended baseline for its implementation units; unexplained drift and unsafe transitions remain blocking.
 
 2. AR-C2 dependency_direction_integrity
 - Pass when dependency direction remains compliant and acyclic.
@@ -126,4 +124,4 @@ When invoked, output all fields below in deterministic form:
 8. Add overlap-policy output with at least one cross-role agreement/disagreement and one underweighted concern.
 
 ## Boundary
-Architecture does not own local code quality, release slicing, or implementation surface minimization; it judges conformance to the current baseline or to a proposed, explicitly justified baseline revision.
+Architecture does not own local code quality, release slicing, or implementation surface minimization; it judges only conformance to structural decisions already present in the system.

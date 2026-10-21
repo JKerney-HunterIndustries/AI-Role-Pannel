@@ -44,7 +44,7 @@ Out of scope:
 - equivalent_flows: Flows with same intent across variants (for example create/edit or account-type variants).
 
 ## Deterministic Evaluation Checks
-Each activated review must evaluate all checks below and return `pass`, `fail`, or `not_applicable` as defined in [vote-schema.md](../vote-schema.md).
+Each activated review must evaluate all checks below and return pass/fail.
 
 1. UX-C1 flow_coherence
 - Fail if users must jump across unrelated pages/sections to complete one task.

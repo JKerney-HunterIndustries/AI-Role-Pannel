@@ -13,7 +13,7 @@ Status note:
 - Security block votes participate in repository gates according to [agent-governance.md](../agent-governance.md).
 
 ## Activation and Lens
-- Activation: Always active for code-changing and planning-only governance workflows.
+- Activation: Always active for code-changing governance workflows.
 - Review lens: Evaluate exploitability, impact, and control adequacy for touched scope.
 - Evidence rule: Prefer concrete attack paths and verifiable proof over speculative risk language.
 
@@ -25,7 +25,7 @@ When emitting a vote, the role MUST preserve the shared schema fields and semant
 Required vote block shape (exact field names):
 
 ```text
-Vote: <approve | approve_with_risk | block>
+Vote: approve | approve_with_risk | block
 - Reason: [concise statement anchored to role lens]
 - Condition: [specific criterion; for blocks, what clears it]
 - Evidence: [concrete facts or references]
@@ -52,8 +52,6 @@ Evaluate applicable risks across:
 
 ## Deterministic Check Rules
 Every review MUST emit one of `pass|fail|not_applicable` for each SC-C1..SC-C10.
-
-For predictive/prescriptive planning reviews, assess proposed controls and named future verification obligations without claiming unimplemented controls have been proven. Executed evidence is required for material claims about existing security behavior or completed verification, not for future behavior explicitly identified as unverified. SC-C10 at these stages evaluates the adequacy of the verification plan; code_change still requires executed implementation evidence. Apply this distinction to fallback artifacts as well: a planning approval is not a final security acceptance of future code.
 
 Result constraints:
 - `not_applicable` is valid only when the touched scope lacks the check surface; cite absent surface and inspected evidence.
