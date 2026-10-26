@@ -53,6 +53,12 @@ Each review must evaluate all checks and emit pass/fail.
 - Pass when testability exception explains why automation is impossible now and enabling conditions later.
 - Fail when exception is incomplete, vague, or missing required future-enablement conditions.
 
+8. SD-C8 test_clarity_and_contract_cohesion
+- Pass when each test makes its expected outcome clear and groups cases that exercise the same behavior contract. Different input values alone do not require separate tests; a theory may include them when the expected result is explicit in the data or the same assertion applies to every case.
+- Fail when conditional assertion logic obscures which outcome is expected for a case, or combines conceptually distinct domain contracts with different behavior/assertions so that the test name and failure report do not identify the failing contract.
+- Do not fail solely because a test contains an `if`, uses a theory, or could be stylistically simplified.
+- Correction: make expected outcomes explicit in the test data, or split distinct contracts into separately named tests. Shared setup and assertions for genuinely shared behavior may remain shared.
+
 ## Activity-Specific Application
 requirements (predictive):
 - Translate requested behavior into testable claims.
@@ -76,12 +82,13 @@ code_change (observed):
 ## Block Validity Rules
 A block vote is valid only when all are present:
 - named_behavior_or_design_element with testability gap
-- check_mapping to one or more checks (SD-C1..SD-C7)
+- check_mapping to one or more checks (SD-C1..SD-C8)
 - evidence from requirement/design/plan/diff
 - correction path (add/adjust tests, add refactor step, or provide valid exception)
 
 Invalid block condition:
 - Any block without specific untestable claim, missing automated test, or uncovered failure/edge case is invalid.
+- For SD-C8, a valid block must identify the obscured case-to-outcome mapping or the distinct contracts bundled together, explain how that impairs verification or failure diagnosis, and name a correction. An `if` by itself is not sufficient evidence.
 
 ## Testability Exception Minimum Contract
 A valid exception must include all fields:
@@ -104,7 +111,7 @@ When invoked, output all fields below in deterministic form:
 - testable_claim_status_by_item: list
 
 3. checklist_results
-- SD-C1 .. SD-C7 each with: pass|fail|not_applicable and one-line evidence
+- SD-C1 .. SD-C8 each with: pass|fail|not_applicable and one-line evidence
 
 4. observable_surface_assessment
 - observable_surfaces_reviewed: list
@@ -142,7 +149,7 @@ When invoked, output all fields below in deterministic form:
 ## Compact Reviewer Algorithm
 1. Set activation=true (required role).
 2. Inventory behavior claims and map to observable outcomes.
-3. Run SD-C1..SD-C7.
+3. Run SD-C1..SD-C8.
 4. Validate test-first plan completeness.
 5. Validate diff-to-test coverage mapping, including failure and edge cases.
 6. Validate any testability exception contract completeness.
