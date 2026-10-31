@@ -69,6 +69,8 @@ Reading, searching, and other operations that do not modify repository files do 
 
 **Reviewer requirement:** For each review, create one new report under `.agent-reviews/` before returning a verdict. Provide the exact report path. Do not waive this requirement.
 
+**Evidence:** Record the exact proposal or actual result reviewed, every applicable rule used in the decision, and all other evidence relied upon. For each evidence item, include its source and the content used—not merely a reference to where it can be found. Explain how that evidence supports the verdict. Identify any missing evidence, assumptions, or unresolved questions that affected the decision.
+
 **Executing AI requirement:** Before acting, verify that the report exists, is readable, and records the reviewed action and verdict. If it is missing, unreadable, or mismatched, do not proceed. If the reviewer cannot save or verify a report, do not make the change.
 
 **Exception:** The reviewer-authored report is exempt from review; this exception permits no other file changes.
