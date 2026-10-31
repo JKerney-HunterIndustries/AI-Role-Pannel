@@ -77,9 +77,15 @@ Reading, searching, and other operations that do not modify repository files do 
 
 **Exception:** The reviewer-authored report is exempt from review; this exception permits no other file changes.
 
-## Required: Scope Lock After Gate
+## Required: Approved Plan Lock
 
-After the gate passes, keep both the plan and implementation strictly within the exact requirement(s) that passed it. Do not broaden, extrapolate, or generalize the scope, behavior, or solution, or add adjacent improvements. If the work appears to require a broader or distinct requirement, stop; it must pass the gate separately before being planned or implemented.
+**Trigger:** After a plan receives review approval.
+
+**Requirement:** Execute only the approved plan. Any change to that plan requires a new review and a matching report verified as `APPROVED` before execution of the changed plan. Do not change an implementation that has received review approval without the required reapproval.
+
+**Pause:** If a change to the approved plan is needed, stop execution, explain the proposed change, and wait for user direction. User direction does not substitute for review approval; do not resume execution under the changed plan without verified reapproval.
+
+**Scope restriction:** Do not broaden, extrapolate, or generalize the scope, behavior, or solution, or add adjacent improvements. If the work appears to require a broader or distinct requirement, stop; it must pass the gate separately before being planned or implemented.
 
 ## Required: Test-First Process for Code Changes
 
