@@ -128,7 +128,7 @@ If no single test can satisfy all three conditions, the plan is too broad and mu
 
 **Pass action:** This review also fulfills the pre-change review for creating that test. Create it only after verifying a matching, readable `APPROVED` report.
 
-**Failure action:** If any criterion fails, do not create a test. If a criterion failure is found after a draft has been created, submit the exact draft deletion operation for pre-change review and delete it only after verifying an `APPROVED` report. Stop; tell the user which criterion failed. Resume only after the user changes the goal or rules. A reviewer rejection for a criterion failure follows this same stop. For any other rejection, do not create, show, or implement the test; stop and wait for user direction.
+**Failure action:** If the plan cannot satisfy the pass criteria, do not create the test. Identify the failed criterion, explain why the plan is too broad, and propose a narrower plan that preserves the user's goal where possible. Wait for the user to accept the revised scope; after acceptance, restart Phase 1 with the revised plan and proposed test, and obtain the required review before creating the test. If a criterion failure is found after a draft has been created, submit the exact draft deletion operation for pre-change review and delete it only after verifying an `APPROVED` report; explain the failed criterion to the user and wait for direction before continuing. For any other reviewer rejection, do not create, show, or implement the test; explain the rejection and wait for user direction.
 
 ### 2. Create and review the actual test
 
