@@ -94,13 +94,13 @@ Reading, searching, and other operations that do not modify repository files do 
 - **Representation:** The test verifies one intended behavior that no other test already verifies. A behavior is an action the system performs. Examples include responding to input, creating information, creating a function or class that can contain logic, creating a message, sending a message, receiving a message, and creating a holder for information. These examples are illustrative, not exhaustive.
 - **Setup:** Creates only necessities required by every test that uses that setup. Test-specific preparation belongs in Arrange.
 - **Arrange:** Establishes all test-specific preconditions and data, including the subject under test, inputs, mocks, and constants. Calls made solely to establish preconditions belong here; the behavior being tested belongs in Act.
+  - **Omission:** Arrange may be omitted only when the Act call itself creates or loads the subject under test, and that creation or loading is the behavior being tested. Otherwise, Arrange is required.
 - **Act:** Makes the single call that invokes the behavior being tested. All calls made by the test before Act are preparation and belong in Setup or Arrange.
 - **Assert:** Checks results only; it must not create or arrange anything being tested, and assertions must not be placed in Setup.
   - **One logical assertion:** All assertions in a test must collectively verify one result or change produced by Act. Use as many assertion statements as needed to verify that result or change; do not assert a separate result or change.
 - **Single behavior:** Verifies one independently observable behavior; do not combine separate behaviors that could pass or fail independently. Multiple assertions are allowed when they check meaningful properties of that same outcome.
 - **Branching:** Test code must represent a single specific path through the application. Branching logic is prohibited in all test code. This includes conditional statements (`if`, `switch`/`match`), conditional expressions (such as ternaries), and short-circuit operators (`&&`, `||`). Loops are allowed.
 - **Theory tests:** A theory test is allowed only when it tests a modification to a behavior already covered by a regular test. Otherwise, use a regular test.
-- Setup and Arrange may be omitted only when Act itself performs the behavior that brings the subject under test into the program's in-memory state—for example, by constructing, parsing, deserializing, loading, or inserting it. Otherwise, both Setup and Arrange are required.
 
 **Failure action:** If a test cannot meet every criterion, do not create it. If such a test has already been created, obtain approval for its exact deletion through the required pre-change review, then delete it. Stop, identify the failed criterion, and wait for the user to change the goal or rules.
 
