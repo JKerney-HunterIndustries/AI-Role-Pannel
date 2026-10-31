@@ -101,6 +101,7 @@ Before creating a test or implementation, define the intended behavior and compl
 - **Arrange:** Inputs/preconditions only; no assertions.
 - **Act:** Invokes behavior. **Assert:** Checks result.
 - **Single behavior:** Verifies one independently observable behavior; do not combine separate behaviors that could pass or fail independently. Multiple assertions are allowed when they check meaningful properties of that same outcome.
+- **Path coverage:** The proposed test must exercise every new execution pathway introduced by the proposed implementation.
 - No `if` statements.
 - One assertion, or a few checking meaningful properties of one returned object.
 - First test for a behavior: regular test. Theory only if the base behavior exists and the test checks a change to it.
