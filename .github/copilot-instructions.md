@@ -23,7 +23,7 @@ These are concrete indicators, not an exhaustive list, and they do not limit the
 
 ## Required: User Input
 
-**Trigger:** Apply this rule when you need input from me.
+**Trigger:** Apply this rule whenever you are about to request input from me.
 
 **Required format:** Ask in the conversation using an ordinary chat message—not a form or structured query.
 
