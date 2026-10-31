@@ -91,7 +91,7 @@ Reading, searching, and other operations that do not modify repository files do 
 
 **Requirement:** Every such test must satisfy all these criteria:
 
-- **Representation:** The test represents the intended behavior.
+- **Representation:** The test verifies one intended behavior that no other test already verifies. A behavior is an action the system performs. Examples include responding to input, creating information, creating a function or class that can contain logic, creating a message, sending a message, receiving a message, and creating a holder for information. These examples are illustrative, not exhaustive.
 - **Setup:** Shared context only; no assertions or Arrange work.
 - **Arrange:** Inputs/preconditions only; no assertions.
 - **Act:** Invokes behavior. **Assert:** Checks result.
