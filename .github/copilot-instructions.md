@@ -136,7 +136,7 @@ After the test approved in Phase 1 is created, submit the actual test file to th
 
 ### 3. User acceptance
 
-After Phase 2 approves the created test, show that exact test to the user and pause for explicit acceptance. Acceptance applies only to the test content proposed and approved in Phase 1 and verified as the created file in Phase 2. Questions, discussion, silence, or a request for revisions are not acceptance. If revisions are requested, submit the exact proposed test edit for pre-change review, then repeat Phase 1 and Phase 2 for the revised test before showing it for acceptance. Implement only after explicit acceptance of the exact current test. If rejected, stop and wait.
+After Phase 2 approves the created test, show that exact test to the user and pause for explicit acceptance. Acceptance applies only to the test content proposed and approved in Phase 1 and verified as the created file in Phase 2. Questions, discussion, silence, or a request for revisions are not acceptance. If revisions are requested, submit the exact proposed test edit for pre-change review, then repeat Phase 1 and Phase 2 for the revised test before showing it for acceptance. Implement only after explicit acceptance of the exact current test. If the user rejects the test without requesting revisions, do not implement it; wait for further user direction.
 
 ### 4. Implement and verify
 
