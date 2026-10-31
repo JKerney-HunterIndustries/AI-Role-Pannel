@@ -91,7 +91,7 @@ Reading, searching, and other operations that do not modify repository files do 
 
 **Requirement:** Every such test must satisfy all these criteria:
 
-- **Representation:** One test represents the intended behavior.
+- **Representation:** The test represents the intended behavior.
 - **Setup:** Shared context only; no assertions or Arrange work.
 - **Arrange:** Inputs/preconditions only; no assertions.
 - **Act:** Invokes behavior. **Assert:** Checks result.
