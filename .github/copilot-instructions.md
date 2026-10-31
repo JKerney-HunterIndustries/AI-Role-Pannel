@@ -92,9 +92,10 @@ Reading, searching, and other operations that do not modify repository files do 
 **Requirement:** Every such test must satisfy all these criteria:
 
 - **Representation:** The test verifies one intended behavior that no other test already verifies. A behavior is an action the system performs. Examples include responding to input, creating information, creating a function or class that can contain logic, creating a message, sending a message, receiving a message, and creating a holder for information. These examples are illustrative, not exhaustive.
-- **Setup:** Shared context only; no assertions or Arrange work.
+- **Setup:** Creates only necessities required by every test that uses that setup. Test-specific preparation belongs in Arrange.
 - **Arrange:** Inputs/preconditions only; no assertions.
-- **Act:** Invokes behavior. **Assert:** Checks result.
+- **Act:** Invokes behavior.
+- **Assert:** Checks results only; it must not create or arrange anything being tested, and assertions must not be placed in Setup.
 - **Single behavior:** Verifies one independently observable behavior; do not combine separate behaviors that could pass or fail independently. Multiple assertions are allowed when they check meaningful properties of that same outcome.
 - **Path coverage:** The test must exercise every new execution pathway introduced by the proposed implementation.
 - No `if` statements.
