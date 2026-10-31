@@ -45,6 +45,8 @@ These are concrete indicators, not an exhaustive list, and they do not limit the
 2. **Review steps when explicitly required.** For each step requiring review under an applicable rule, submit the proposed step before performing it. Do not perform that step until its report is verified as `APPROVED`.
 3. **Review the actual result after execution.** Submit the actual file changes for review against the applicable rules and approved plan. Earlier approvals do not substitute for this review.
 
+**Rejected result:** If result review returns `REJECTED`, treat the plan as rejected. Revert the changes made under that plan, preserve the review reports and any pre-existing changes, then stop. The revert must itself receive the required pre-change review; rejection does not waive that protection.
+
 Each review requires a separate report containing the reviewer's reasoning and verdict.
 
 ### Existing Pre-Change and Report Requirements
