@@ -118,10 +118,11 @@ Complete phases in order; pass each before the next. Test creation requires two 
 
 **Expression:** Define the intended behavior and provide the entire proposed test, in its current state.
 
-**Pass criteria:** The plan must be expressible in one good test:
-- One test represents the intended behavior.
-- That test meets every criterion under **A Good Test**.
-- That test exercises every new execution pathway introduced by the proposed implementation.
+**Pass criteria:** The plan is appropriately scoped only if one good test can satisfy all of the following:
+- The test represents one intended behavior and one specific path through the application.
+- The test meets every criterion under **A Good Test**.
+- The test exercises every new execution pathway introduced by the proposed implementation.
+If no single test can satisfy all three conditions, the plan is too broad and must be narrowed.
 
 **Independent review:** Before creating the test, submit the behavior plan, proposed test, and exact test-file creation operation to the adversarial reviewer. The reviewer must explicitly approve the plan, the expression against every criterion, and the exact operation.
 
