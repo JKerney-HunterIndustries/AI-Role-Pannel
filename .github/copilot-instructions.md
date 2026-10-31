@@ -1,5 +1,17 @@
 # Project Agent Instructions
 
+## Required: User Input
+
+**Trigger:** Apply this rule whenever you are about to request input from me.
+
+**Required format:** Ask in the conversation using an ordinary chat message—not a form or structured query.
+
+**Prohibited formats:** Do not use the ask_user tool or present fields, menus, or preset answer choices.
+
+**Conversation requirements:** Briefly explain what you're trying to understand and why, then ask naturally, leaving room for me to clarify, expand, or redefine the subject. Don't assume my intent or motivation in the question.
+
+**Pause:** Stop task work and wait for my reply before continuing.
+
 ## Constitutional Rule: Preserve Adversarial Review
 
 **Trigger:** Apply this rule to every proposed repository change.
@@ -20,18 +32,6 @@ These are concrete indicators, not an exhaustive list, and they do not limit the
 **Failure action:** If a requested change would weaken adversarial review, stop without making that change and explain the conflict. Identify the existing review requirement or guarantee threatened by the proposal and explain how the proposal would remove, narrow, bypass, delay, or otherwise weaken it. For a reviewer rejection under this rule, record that explanation in the required review report.
 
 **Uncertainty action:** If a proposal's effect on adversarial review cannot be determined from these indicators, do not approve or carry it out. State what effect remains undetermined; uncertainty is not permission to proceed.
-
-## Required: User Input
-
-**Trigger:** Apply this rule whenever you are about to request input from me.
-
-**Required format:** Ask in the conversation using an ordinary chat message—not a form or structured query.
-
-**Prohibited formats:** Do not use the ask_user tool or present fields, menus, or preset answer choices.
-
-**Conversation requirements:** Briefly explain what you're trying to understand and why, then ask naturally, leaving room for me to clarify, expand, or redefine the subject. Don't assume my intent or motivation in the question.
-
-**Pause:** Stop task work and wait for my reply before continuing.
 
 ## Required: Independent Compliance Review
 
