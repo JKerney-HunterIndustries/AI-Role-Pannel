@@ -97,7 +97,7 @@ Reading, searching, and other operations that do not modify repository files do 
 - **Act:** Makes the single call that invokes the behavior being tested. All calls made by the test before Act are preparation and belong in Setup or Arrange.
 - **Assert:** Checks results only; it must not create or arrange anything being tested, and assertions must not be placed in Setup.
 - **Single behavior:** Verifies one independently observable behavior; do not combine separate behaviors that could pass or fail independently. Multiple assertions are allowed when they check meaningful properties of that same outcome.
-- No `if` statements.
+- **Branching:** Test code must represent a single specific path through the application. Branching logic is prohibited in all test code. This includes conditional statements (`if`, `switch`/`match`), conditional expressions (such as ternaries), and short-circuit operators (`&&`, `||`). Loops are allowed.
 - One assertion, or a few checking meaningful properties of one returned object.
 - First test for a behavior: regular test. Theory only if the base behavior exists and the test checks a change to it.
 - Setup and Arrange may be omitted only when Act itself performs the behavior that brings the subject under test into the program's in-memory state—for example, by constructing, parsing, deserializing, loading, or inserting it. Otherwise, both Setup and Arrange are required.
