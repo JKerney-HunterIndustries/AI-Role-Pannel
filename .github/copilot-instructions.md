@@ -85,29 +85,47 @@ Reading, searching, and other operations that do not modify repository files do 
 
 **Pause:** If a change to the approved plan is needed, stop execution, explain the proposed change, and wait for user direction. User direction does not substitute for review approval; do not resume execution under the changed plan without verified reapproval.
 
+## Required: A Good Test
+
+**Trigger:** Whenever a test is written or modified in code.
+
+**Requirement:** Every such test must satisfy all these criteria:
+
+- **Representation:** One test represents the intended behavior.
+- **Setup:** Shared context only; no assertions or Arrange work.
+- **Arrange:** Inputs/preconditions only; no assertions.
+- **Act:** Invokes behavior. **Assert:** Checks result.
+- **Single behavior:** Verifies one independently observable behavior; do not combine separate behaviors that could pass or fail independently. Multiple assertions are allowed when they check meaningful properties of that same outcome.
+- **Path coverage:** The test must exercise every new execution pathway introduced by the proposed implementation.
+- No `if` statements.
+- One assertion, or a few checking meaningful properties of one returned object.
+- First test for a behavior: regular test. Theory only if the base behavior exists and the test checks a change to it.
+- Setup and Arrange may be omitted only when Act itself performs the behavior that brings the subject under test into the program's in-memory state—for example, by constructing, parsing, deserializing, loading, or inserting it. Otherwise, both Setup and Arrange are required.
+
+**Failure action:** If a test cannot meet every criterion, do not create it. If such a test has already been created, obtain approval for its exact deletion through the required pre-change review, then delete it. Stop, identify the failed criterion, and wait for the user to change the goal or rules.
+
 ## Required: Test-First Process for Code Changes
 
 This process applies only to code changes. Documentation and other non-code changes do not use the test gate, but still require pre-change review.
 
 Complete phases in order; pass each before the next. Test creation requires two distinct adversarial approvals: one for the plan and proposed test before creating it, and one for the actual test before showing it to the user. Each approval requires its own verified report.
 
-### 1. Test gate and plan approval
+### 1. Test Expression Gate and Plan Approval
 
-Before creating a test or implementation, define the intended behavior and complete proposed test. Check whether one test represents the behavior and meets every criterion:
+**Trigger:** Before any source-code change.
 
-- **Setup:** Shared context only; no assertions or Arrange work.
-- **Arrange:** Inputs/preconditions only; no assertions.
-- **Act:** Invokes behavior. **Assert:** Checks result.
-- **Single behavior:** Verifies one independently observable behavior; do not combine separate behaviors that could pass or fail independently. Multiple assertions are allowed when they check meaningful properties of that same outcome.
-- **Path coverage:** The proposed test must exercise every new execution pathway introduced by the proposed implementation.
-- No `if` statements.
-- One assertion, or a few checking meaningful properties of one returned object.
-- First test for a behavior: regular test. Theory only if the base behavior exists and the test checks a change to it.
-- Setup and Arrange may be omitted only when Act itself performs the behavior that brings the subject under test into the program's in-memory state—for example, by constructing, parsing, deserializing, loading, or inserting it. Otherwise, both Setup and Arrange are required.
+**Expression:** Define the intended behavior and provide the entire proposed test, in its current state.
 
-Before creating the test, submit the behavior plan, complete proposed test, and exact test-file creation operation to the adversarial reviewer. The reviewer must explicitly approve the plan, the proposed test against every criterion, and the exact operation. This review also fulfills the pre-change review for creating that test. Create it only after verifying a matching, readable `APPROVED` report.
+**Pass criteria:** The plan must be expressible in one good test:
+- One test represents the intended behavior.
+- That test meets every criterion under **A Good Test**.
+- That test exercises every new execution pathway introduced by the proposed implementation.
 
-**Fail:** If any criterion fails, do not create a test. If a criterion failure is found after a draft has been created, submit the exact draft deletion operation for pre-change review and delete it only after verifying an `APPROVED` report. Stop; tell the user which criterion failed. Resume only after the user changes the goal or rules. A reviewer rejection for a criterion failure follows this same stop. For any other rejection, do not create, show, or implement the test; stop and wait for user direction.
+**Independent review:** Before creating the test, submit the behavior plan, proposed test, and exact test-file creation operation to the adversarial reviewer. The reviewer must explicitly approve the plan, the expression against every criterion, and the exact operation.
+
+**Pass action:** This review also fulfills the pre-change review for creating that test. Create it only after verifying a matching, readable `APPROVED` report.
+
+**Failure action:** If any criterion fails, do not create a test. If a criterion failure is found after a draft has been created, submit the exact draft deletion operation for pre-change review and delete it only after verifying an `APPROVED` report. Stop; tell the user which criterion failed. Resume only after the user changes the goal or rules. A reviewer rejection for a criterion failure follows this same stop. For any other rejection, do not create, show, or implement the test; stop and wait for user direction.
 
 ### 2. Create and review the actual test
 
