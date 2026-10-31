@@ -140,7 +140,7 @@ After Phase 2 approves the created test, show that exact test to the user and pa
 
 ### 4. Implement and verify
 
-Before each implementation change, obtain the required pre-change review. After acceptance, implement only accepted behavior and run the accepted test plus relevant existing tests. Do not change expected behavior to make implementation pass. If behavior or test must change, stop; rerun the gates and obtain acceptance of the revised test before resuming.
+Before each implementation change, obtain the required pre-change review. After acceptance, implement only accepted behavior and run the accepted test and any existing tests that verify other aspects of the same function or system action under test. Do not change expected behavior to make implementation pass. If behavior or test must change, stop; rerun the gates and obtain acceptance of the revised test before resuming.
 
 ## Required: Test Naming
 
