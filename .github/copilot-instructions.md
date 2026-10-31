@@ -41,7 +41,7 @@ These are concrete indicators, not an exhaustive list, and they do not limit the
 
 **Review standard:** At every required review, check compliance with every applicable presented rule. User authorization does not waive those rules.
 
-1. **Review the plan before execution.** Submit the executing AI's complete proposed plan to the `adversarial-reviewer`. Do not begin execution until its report is verified as `APPROVED`.
+1. **Review the plan before execution.** Submit the executing AI's entire proposed plan, in its current state, to the `adversarial-reviewer`. Do not begin execution until its report is verified as `APPROVED`.
 2. **Review steps when explicitly required.** For each step requiring review under an applicable rule, submit the proposed step before performing it. Do not perform that step until its report is verified as `APPROVED`.
 3. **Review the actual result after execution.** Submit the actual file changes for review against the applicable rules and approved plan. Earlier approvals do not substitute for this review.
 
