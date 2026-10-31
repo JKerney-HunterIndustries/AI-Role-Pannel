@@ -85,8 +85,6 @@ Reading, searching, and other operations that do not modify repository files do 
 
 **Pause:** If a change to the approved plan is needed, stop execution, explain the proposed change, and wait for user direction. User direction does not substitute for review approval; do not resume execution under the changed plan without verified reapproval.
 
-**Scope restriction:** Do not broaden, extrapolate, or generalize the scope, behavior, or solution, or add adjacent improvements. If the work appears to require a broader or distinct requirement, stop; it must pass the gate separately before being planned or implemented.
-
 ## Required: Test-First Process for Code Changes
 
 This process applies only to code changes. Documentation and other non-code changes do not use the test gate, but still require pre-change review.
