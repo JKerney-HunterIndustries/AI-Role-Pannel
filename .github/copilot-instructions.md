@@ -99,7 +99,7 @@ Reading, searching, and other operations that do not modify repository files do 
   - **One logical assertion:** All assertions in a test must collectively verify one result or change produced by Act. Use as many assertion statements as needed to verify that result or change; do not assert a separate result or change.
 - **Single behavior:** Verifies one independently observable behavior; do not combine separate behaviors that could pass or fail independently. Multiple assertions are allowed when they check meaningful properties of that same outcome.
 - **Branching:** Test code must represent a single specific path through the application. Branching logic is prohibited in all test code. This includes conditional statements (`if`, `switch`/`match`), conditional expressions (such as ternaries), and short-circuit operators (`&&`, `||`). Loops are allowed.
-- First test for a behavior: regular test. Theory only if the base behavior exists and the test checks a change to it.
+- **Theory tests:** A theory test is allowed only when it tests a modification to a behavior already covered by a regular test. Otherwise, use a regular test.
 - Setup and Arrange may be omitted only when Act itself performs the behavior that brings the subject under test into the program's in-memory state—for example, by constructing, parsing, deserializing, loading, or inserting it. Otherwise, both Setup and Arrange are required.
 
 **Failure action:** If a test cannot meet every criterion, do not create it. If such a test has already been created, obtain approval for its exact deletion through the required pre-change review, then delete it. Stop, identify the failed criterion, and wait for the user to change the goal or rules.
