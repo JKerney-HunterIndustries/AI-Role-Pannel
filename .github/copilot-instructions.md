@@ -97,7 +97,6 @@ Reading, searching, and other operations that do not modify repository files do 
 - **Act:** Makes the single call that invokes the behavior being tested. All calls made by the test before Act are preparation and belong in Setup or Arrange.
 - **Assert:** Checks results only; it must not create or arrange anything being tested, and assertions must not be placed in Setup.
 - **Single behavior:** Verifies one independently observable behavior; do not combine separate behaviors that could pass or fail independently. Multiple assertions are allowed when they check meaningful properties of that same outcome.
-- **Path coverage:** The test must exercise every new execution pathway introduced by the proposed implementation.
 - No `if` statements.
 - One assertion, or a few checking meaningful properties of one returned object.
 - First test for a behavior: regular test. Theory only if the base behavior exists and the test checks a change to it.
