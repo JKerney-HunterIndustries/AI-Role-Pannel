@@ -17,7 +17,21 @@ These are concrete indicators, not an exhaustive list, and they do not limit the
 
 When you need input from me, ask in the conversation using an ordinary chat message—not a form or structured query. Do not use the ask_user tool or present fields, menus, or preset answer choices. Briefly explain what you're trying to understand and why, then ask naturally, leaving room for me to clarify, expand, or redefine the subject. Don't assume my intent or motivation in the question. Stop task work and wait for my reply before continuing.
 
-## Required: Pre-Change Review
+## Required: Independent Compliance Review
+
+**Trigger:** Apply this process when fulfilling a request would add, modify, or delete any file.
+
+**Exception:** The adversarial reviewer may create its required review reports without review. This exception permits no other file changes.
+
+**Review standard:** At every required review, check compliance with every applicable presented rule. User authorization does not waive those rules.
+
+1. **Review the plan before execution.** Submit the executing AI's complete proposed plan to the `adversarial-reviewer`. Do not begin execution until its report is verified as `APPROVED`.
+2. **Review steps when explicitly required.** For each step requiring review under an applicable rule, submit the proposed step before performing it. Do not perform that step until its report is verified as `APPROVED`.
+3. **Review the actual result after execution.** Submit the actual file changes for review against the applicable rules and approved plan. Earlier approvals do not substitute for this review.
+
+Each review requires a separate report containing the reviewer's reasoning and verdict.
+
+### Existing Pre-Change and Report Requirements
 
 Before each operation that may add, delete, or modify repository files, delegate the exact proposed operation to the `adversarial-reviewer` subagent. This applies to code, tests, and documentation. Run one review at a time; a material change to the proposal requires a new review.
 

@@ -62,6 +62,9 @@ Conversation and actions that do not change repository files are not reviewed.
 
 This is instruction-based guidance for VS Code Copilot, not deterministic
 enforcement. It depends on project instructions being available to the active
-Copilot session. The reviewer checks proposed operations and workflow evidence
-before changes; reviewing completed code is part of the longer-term goal but
-is not yet implemented. See [VISION.md](VISION.md) for that goal.
+Copilot session. File-changing requests require independent review of the plan
+before execution and of the actual changes afterward. Step reviews are required
+where the instructions explicitly specify them, including the existing review
+before every repository-file change. Every required review checks compliance
+with all applicable presented rules and records its reasoning and verdict in a
+separate report. See [VISION.md](VISION.md) for the longer-term goal.
