@@ -106,6 +106,8 @@ Reading, searching, and other operations that do not modify repository files do 
 
 ## Required: Test-First Process for Code Changes
 
+**Purpose:** Determine whether a proposed code-change plan is appropriately scoped.
+
 This process applies only to code changes. Documentation and other non-code changes do not use the test gate, but still require pre-change review.
 
 Complete phases in order; pass each before the next. Test creation requires two distinct adversarial approvals: one for the plan and proposed test before creating it, and one for the actual test before showing it to the user. Each approval requires its own verified report.
