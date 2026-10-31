@@ -93,7 +93,7 @@ Reading, searching, and other operations that do not modify repository files do 
 
 - **Representation:** The test verifies one intended behavior that no other test already verifies. A behavior is an action the system performs. Examples include responding to input, creating information, creating a function or class that can contain logic, creating a message, sending a message, receiving a message, and creating a holder for information. These examples are illustrative, not exhaustive.
 - **Setup:** Creates only necessities required by every test that uses that setup. Test-specific preparation belongs in Arrange.
-- **Arrange:** Inputs/preconditions only; no assertions.
+- **Arrange:** Establishes all test-specific preconditions and data, including the subject under test, inputs, mocks, and constants. Calls made solely to establish preconditions belong here; the behavior being tested belongs in Act.
 - **Act:** Invokes behavior.
 - **Assert:** Checks results only; it must not create or arrange anything being tested, and assertions must not be placed in Setup.
 - **Single behavior:** Verifies one independently observable behavior; do not combine separate behaviors that could pass or fail independently. Multiple assertions are allowed when they check meaningful properties of that same outcome.
