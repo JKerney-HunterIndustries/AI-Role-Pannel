@@ -49,13 +49,29 @@ These are concrete indicators, not an exhaustive list, and they do not limit the
 
 Each review requires a separate report containing the reviewer's reasoning and verdict.
 
-### Existing Pre-Change and Report Requirements
+### Pre-Change Gate
 
-Before each operation that may add, delete, or modify repository files, delegate the exact proposed operation to the `adversarial-reviewer` subagent. This applies to code, tests, and documentation. Run one review at a time. Any change to the reviewed proposal requires a new review. This includes changes to its scope, purpose, or constraints; adding, removing, or reordering file operations; and changes to an operation's target path, type, proposed content, or execution method. These examples do not limit the requirement to review every changed proposal.
+**Actor:** Executing AI.
 
-For each review, the reviewer must create one new report under `.agent-reviews/` before returning a verdict. Do not waive this requirement. The reviewer must provide the exact report path. Before acting, verify that the report exists, is readable, and records the reviewed action and verdict. If it is missing, unreadable, or mismatched, do not proceed. For a `REJECTED` test-plan or test-creation review, follow the specific failure and user-direction rules in the Test-First Process below. For other rejected pre-change operations, do not proceed; revise and resubmit using a new report path. If the reviewer cannot save or verify a report, do not make the change.
+**Trigger:** Before each operation that may add, delete, or modify repository files.
 
-The reviewer-authored report is exempt from review; this exception permits no other file changes. Reading, searching, and other operations that do not modify repository files do not require review.
+**Requirement:** Delegate the exact proposed operation to the `adversarial-reviewer` subagent. This applies to code, tests, and documentation. Run one review at a time. Do not perform the operation without approval.
+
+**Re-review:** Any change to the reviewed proposal requires a new review. This includes changes to its scope, purpose, or constraints; adding, removing, or reordering file operations; and changes to an operation's target path, type, proposed content, or execution method. These examples do not limit the requirement to review every changed proposal.
+
+**Rejection:** For a `REJECTED` test-plan or test-creation review, follow the specific failure and user-direction rules in the Test-First Process below. For other rejected pre-change operations, do not proceed; revise and resubmit using a new report path.
+
+Reading, searching, and other operations that do not modify repository files do not require review.
+
+### Review Debugging Reports
+
+**Purpose:** Make the reviewer's decisions inspectable while developing and debugging this system. The report is debugging instrumentation, not the review decision itself.
+
+**Reviewer requirement:** For each review, create one new report under `.agent-reviews/` before returning a verdict. Provide the exact report path. Do not waive this requirement.
+
+**Executing AI requirement:** Before acting, verify that the report exists, is readable, and records the reviewed action and verdict. If it is missing, unreadable, or mismatched, do not proceed. If the reviewer cannot save or verify a report, do not make the change.
+
+**Exception:** The reviewer-authored report is exempt from review; this exception permits no other file changes.
 
 ## Required: Scope Lock After Gate
 
