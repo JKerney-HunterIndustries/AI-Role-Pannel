@@ -101,6 +101,7 @@ Reading, searching, and other operations that do not modify repository files do 
 - **Single behavior:** Verifies one independently observable behavior; do not combine separate behaviors that could pass or fail independently. Multiple assertions are allowed when they check meaningful properties of that same outcome.
 - **Branching:** Test code must represent a single specific path through the application. Branching logic is prohibited in all test code. This includes conditional statements (`if`, `switch`/`match`), conditional expressions (such as ternaries), and short-circuit operators (`&&`, `||`). Loops are allowed.
 - **Theory tests:** A theory test is allowed only when it tests a modification to a behavior already covered by a regular test. Otherwise, use a regular test.
+- **Naming:** Name each test concisely for the behavior it verifies, using domain language—not the test's specific data or implementation details. Apply to regular and theory tests. Put concrete test data and code-level identifiers in the test body.
 
 **Failure action:** If a test cannot meet every criterion, do not create it. If such a test has already been created, obtain approval for its exact deletion through the required pre-change review, then delete it. Stop, identify the failed criterion, and wait for the user to change the goal or rules.
 
@@ -141,7 +142,3 @@ After Phase 2 approves the created test, show that exact test to the user and pa
 ### 4. Implement and verify
 
 Before each implementation change, obtain the required pre-change review. After acceptance, implement only accepted behavior and run the accepted test and any existing tests that verify other aspects of the same function or system action under test. Do not change expected behavior to make implementation pass. If behavior or test must change, stop; rerun the gates and obtain acceptance of the revised test before resuming.
-
-## Required: Test Naming
-
-Name tests as concise behavioral requirements in domain language. Put concrete test data and code-level identifiers (such as type names and qualified enum-member expressions) in the test body rather than the test name.
