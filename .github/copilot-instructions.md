@@ -89,6 +89,8 @@ Reading, searching, and other operations that do not modify repository files do 
 
 **Purpose:** Determine whether a proposed code-change plan is appropriately scoped.
 
+**Test ownership and lifecycle:** The test is an expression of the proposed code-change plan, not an independent deliverable. Its creation, review, and user acceptance are stages of that same plan; separate approvals do not create separate plans or rollback boundaries. The test remains as a regression test when the plan succeeds. If the plan's result is rejected, rollback includes any test created under that plan. Such a test is not a pre-existing change merely because it was created or approved before implementation. Its deletion still requires independent pre-change review.
+
 This process applies only to code changes. Documentation and other non-code changes do not use the test gate, but still require pre-change review.
 
 Complete phases in order; pass each before the next. Test creation requires two distinct adversarial approvals: one for the plan and proposed test before creating it, and one for the actual test before showing it to the user. Each approval requires its own verified report.
