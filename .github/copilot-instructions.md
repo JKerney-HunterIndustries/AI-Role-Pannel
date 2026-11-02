@@ -12,6 +12,19 @@
 
 **Pause:** Stop task work and wait for my reply before continuing.
 
+## Term: Gheer
+
+A *Gheer* is any action a program performs that falls into one or more of these categories:
+- creation of data;
+- modification of data;
+- creation of a container for data;
+- loading information into memory;
+- changing the programming environment in which the program operates;
+- modifying state;
+- sending messages;
+- receiving messages; or
+- instantiation.
+
 ## Constitutional Rule: Preserve Adversarial Review
 
 **Trigger:** Apply this rule to every proposed repository change.
@@ -99,15 +112,15 @@ Complete phases in order; pass each before the next. Test creation requires two 
 
 **Trigger:** Before any source-code change.
 
-**Expression:** Define the intended behavior and provide the entire proposed test, in its current state.
+**Expression:** Define the intended gheer and provide the entire proposed test, in its current state.
 
 **Pass criteria:** The plan is appropriately scoped only if one good test can satisfy all of the following:
-- The test represents one intended behavior and one specific path through the application.
+- The test represents one intended gheer and one specific path through the application.
 - The test meets every criterion under **A Good Test**.
 - The test exercises every new execution pathway introduced by the proposed implementation.
 If no single test can satisfy all three conditions, the plan is too broad and must be narrowed.
 
-**Independent review:** Before creating the test, submit the behavior plan, proposed test, and exact test-file creation operation to the adversarial reviewer. The reviewer must explicitly approve the plan, the expression against every criterion, and the exact operation.
+**Independent review:** Before creating the test, submit the gheer plan, proposed test, and exact test-file creation operation to the adversarial reviewer. The reviewer must explicitly approve the plan, the expression against every criterion, and the exact operation.
 
 **Pass action:** This review also fulfills the pre-change review for creating that test. Create it only after verifying a matching, readable `APPROVED` report.
 
@@ -115,7 +128,7 @@ If no single test can satisfy all three conditions, the plan is too broad and mu
 
 ### 2. Create and review the actual test
 
-After the test approved in Phase 1 is created, submit the actual test file to the adversarial reviewer before showing it to the user. The reviewer must verify that the created test exactly matches the complete test proposed and approved in Phase 1, compare it with the approved plan, and verify every test-gate criterion, including that it represents the plan's intended behavior. This separate review verifies that the created test is the approved test; the Phase 1 review does not substitute for checking the actual file. Show the test only after verifying a matching, readable `APPROVED` report. If the reviewer finds a criterion failure, follow Phase 1's failure action. If the actual test does not match the Phase 1 proposal, do not show or implement it; explain the discrepancy and wait for user direction. If the user directs a revision, submit the exact proposed edit for pre-change review and repeat Phase 1 and Phase 2 before showing the revised test. For any other rejection, do not show or implement the test; explain the rejection and wait for user direction.
+After the test approved in Phase 1 is created, submit the actual test file to the adversarial reviewer before showing it to the user. The reviewer must verify that the created test exactly matches the complete test proposed and approved in Phase 1, compare it with the approved plan, and verify every test-gate criterion, including that it represents the plan's intended gheer. This separate review verifies that the created test is the approved test; the Phase 1 review does not substitute for checking the actual file. Show the test only after verifying a matching, readable `APPROVED` report. If the reviewer finds a criterion failure, follow Phase 1's failure action. If the actual test does not match the Phase 1 proposal, do not show or implement it; explain the discrepancy and wait for user direction. If the user directs a revision, submit the exact proposed edit for pre-change review and repeat Phase 1 and Phase 2 before showing the revised test. For any other rejection, do not show or implement the test; explain the rejection and wait for user direction.
 
 ### 3. User acceptance
 
@@ -123,7 +136,7 @@ After Phase 2 approves the created test, show that exact test to the user and pa
 
 ### 4. Implement and verify
 
-Before each implementation change, obtain the required pre-change review. After acceptance, implement only accepted behavior and run the accepted test and any existing tests that verify other aspects of the same function or system action under test. Do not change expected behavior to make implementation pass. If behavior or test must change, stop; rerun the gates and obtain acceptance of the revised test before resuming.
+Before each implementation change, obtain the required pre-change review. After acceptance, implement only accepted gheer and run the accepted test and any existing tests that verify other aspects of the same function or system action under test. Do not change expected gheer to make implementation pass. If gheer or test must change, stop; rerun the gates and obtain acceptance of the revised test before resuming.
 
 ## Required: A Good Test
 
@@ -131,16 +144,16 @@ Before each implementation change, obtain the required pre-change review. After 
 
 **Requirement:** Every such test must satisfy all these criteria:
 
-- **Representation:** The test verifies one intended behavior that no other test already verifies. A behavior is an action the system performs. Examples include responding to input, creating information, creating a function or class that can contain logic, creating a message, sending a message, receiving a message, and creating a holder for information. These examples are illustrative, not exhaustive.
+- **Representation:** The test verifies one intended gheer that no other test already verifies. A gheer is an action the system performs. Examples include responding to input, creating information, creating a function or class that can contain logic, creating a message, sending a message, receiving a message, and creating a holder for information. These examples are illustrative, not exhaustive.
 - **Setup:** Creates only necessities required by every test that uses that setup. Test-specific preparation belongs in Arrange.
-- **Arrange:** Establishes all test-specific preconditions and data, including the subject under test, inputs, mocks, and constants. Calls made solely to establish preconditions belong here; the behavior being tested belongs in Act.
-  - **Omission:** Arrange may be omitted only when the Act call itself creates or loads the subject under test, and that creation or loading is the behavior being tested. Otherwise, Arrange is required.
-- **Act:** Makes the single call that invokes the behavior being tested. All calls made by the test before Act are preparation and belong in Setup or Arrange.
+- **Arrange:** Establishes all test-specific preconditions and data, including the subject under test, inputs, mocks, and constants. Calls made solely to establish preconditions belong here; the gheer being tested belongs in Act.
+  - **Omission:** Arrange may be omitted only when the Act call itself creates or loads the subject under test, and that creation or loading is the gheer being tested. Otherwise, Arrange is required.
+- **Act:** Makes the single call that invokes the gheer being tested. All calls made by the test before Act are preparation and belong in Setup or Arrange.
 - **Assert:** Checks results only; it must not create or arrange anything being tested, and assertions must not be placed in Setup.
   - **One logical assertion:** All assertions in a test must collectively verify one result or change produced by Act. Use as many assertion statements as needed to verify that result or change; do not assert a separate result or change.
-- **Single behavior:** Verifies one independently observable behavior; do not combine separate behaviors that could pass or fail independently. Multiple assertions are allowed when they check meaningful properties of that same outcome.
+- **Single gheer:** Verifies one independently observable gheer; do not combine separate gheers that could pass or fail independently. Multiple assertions are allowed when they check meaningful properties of that same outcome.
 - **Branching:** Test code must represent a single specific path through the application. Branching logic is prohibited in all test code. This includes conditional statements (`if`, `switch`/`match`), conditional expressions (such as ternaries), and short-circuit operators (`&&`, `||`). Loops are allowed.
-- **Theory tests:** A theory test is allowed only when it tests a modification to a behavior already covered by a regular test. Otherwise, use a regular test.
-- **Naming:** Name each test concisely for the behavior it verifies, using domain language—not the test's specific data or implementation details. Apply to regular and theory tests. Put concrete test data and code-level identifiers in the test body.
+- **Theory tests:** A theory test is allowed only when it tests a modification to a gheer already covered by a regular test. Otherwise, use a regular test.
+- **Naming:** Name each test concisely for the gheer it verifies, using domain language—not the test's specific data or implementation details. Apply to regular and theory tests. Put concrete test data and code-level identifiers in the test body.
 
 **Failure action:** If a test cannot meet every criterion, do not create it. If such a test has already been created, obtain approval for its exact deletion through the required pre-change review, then delete it. Stop, identify the failed criterion, and wait for the user to change the goal or rules.
