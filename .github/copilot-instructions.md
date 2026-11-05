@@ -115,7 +115,9 @@ Complete phases in order; pass each before the next. Test creation requires two 
 **Expression:** Define the intended gheer and provide the entire proposed test, in its current state.
 
 **Pass criteria:** The plan is appropriately scoped only if one good test can satisfy all of the following:
-- The test represents one intended gheer and one specific path through the application.
+
+>  **LAW**: The test represents one intended gheer and one specific path through the application. The behavior under test is the exact mapping returned by that method. When evealuating this law for the test gate assessment, the reviewer must act as pessimisticly as possible.
+
 - The test meets every criterion under **A Good Test**.
 - The test exercises every new execution pathway introduced by the proposed implementation.
 If no single test can satisfy all three conditions, the plan is too broad and must be narrowed.
