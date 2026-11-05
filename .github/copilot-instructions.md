@@ -72,7 +72,7 @@ Each review requires a separate report containing the reviewer's reasoning and v
 
 **Re-review:** Any change to the reviewed proposal requires a new review. This includes changes to its scope, purpose, or constraints; adding, removing, or reordering file operations; and changes to an operation's target path, type, proposed content, or execution method. These examples do not limit the requirement to review every changed proposal.
 
-**Rejection:** For a `REJECTED` test-plan or test-creation review, follow the specific failure and user-direction rules in the Test-First Process below. For other rejected pre-change operations, do not proceed; revise and resubmit using a new report path.
+**Rejection:** Never perform a rejected operation. For a rejected plan, test-plan, or test-creation review before implementation, follow Bounded Plan Recovery and the Test-First Process below. For other rejected pre-change operations, do not proceed; revise and resubmit using a new report path, subject to the Approved Plan Lock and rejected-result requirements.
 
 Reading, searching, and other operations that do not modify repository files do not require review.
 
@@ -90,13 +90,27 @@ Reading, searching, and other operations that do not modify repository files do 
 
 **Exception:** The reviewer-authored report is exempt from review; this exception permits no other file changes.
 
+## Required: Bounded Plan Recovery
+
+**Trigger:** A plan or proposed test is rejected before implementation. For code changes, implementation means source-code changes; creating the required test draft is not implementation. For non-code changes, implementation begins with the first planned file change.
+
+**Request-level failure:** Stop and request user direction when evidence shows that fulfilling the complete user request itself cannot satisfy the applicable rules. For a code-change request, this includes an outcome that necessarily requires multiple independently observable gheers, side effects, or execution paths that cannot be covered by one good test. A failed proposal alone does not establish a request-level failure; explain the necessary conflict and its evidence.
+
+**Plan-level failure:** When the failure is in the agent's approach, identify the failed criteria and try a distinct alternative plan without requesting user direction, subject to the limit below. Preserve the complete requested outcome. Do not split the request into multiple plans, omit requested behavior, or relax any approval or test criterion.
+
+**Limit:** Allow the initial plan and at most four alternate plans: five attempts total for the same unchanged request. An attempt is one complete proposed plan submitted for independent review; multiple reviews of that plan do not count as alternate plans. Record each attempt, the relevant review reports, the rejection reasons, and how each alternative addresses them. Approval, test creation, or a later rejection before implementation does not reset the count. After the fifth attempt fails, stop, summarize the attempts and remaining blockers, and request user direction. Do not submit a sixth attempt or reset the budget without explicit user direction.
+
+**Review and cleanup:** Rejection never authorizes execution. Before retrying, obtain verified pre-change approval for deleting any rejected test draft created under the failed plan; preserve review reports and pre-existing changes. If cleanup cannot be approved and verified, do not proceed. Each alternative requires fresh plan and exact-operation review; for code changes, restart Phase 1 and Phase 2 and obtain explicit user acceptance of the exact reviewed test before implementation. No approval or acceptance from a failed plan carries over.
+
+**Boundaries:** This recovery rule permits replanning, not changes without approval. Missing, unreadable, mismatched, or unverified reports never authorize a file operation. The constitutional prohibition and its uncertainty action remain unchanged. Changes to an approved plan outside recovery from a pre-implementation rejection still require the Approved Plan Lock pause. Once implementation has begun, the existing rejected-result rollback-and-stop and approved-plan-change requirements remain in force. Explicit user acceptance of the test remains required; user rejection is not an autonomous-retry instruction.
+
 ## Required: Approved Plan Lock
 
 **Trigger:** After a plan receives review approval.
 
 **Requirement:** Execute only the approved plan. Any change to that plan requires a new review and a matching report verified as `APPROVED` before execution of the changed plan. Do not change an implementation that has received review approval without the required reapproval.
 
-**Pause:** If a change to the approved plan is needed, stop execution, explain the proposed change, and wait for user direction. User direction does not substitute for review approval; do not resume execution under the changed plan without verified reapproval.
+**Pause:** If a change to the approved plan is needed, stop execution, explain the proposed change, and wait for user direction. The only autonomous-replanning case is recovery from a pre-implementation rejection under Bounded Plan Recovery; that rule still requires approved cleanup and fresh verified approval before any file change. User direction does not substitute for review approval; do not resume execution under the changed plan without verified reapproval.
 
 ## Required: Test-First Process for Code Changes
 
@@ -130,11 +144,11 @@ If no single test can satisfy all three conditions, the plan is too broad and mu
 
 **Pass action:** This review also fulfills the pre-change review for creating that test. Create it only after verifying a matching, readable `APPROVED` report.
 
-**Failure action:** If the plan cannot satisfy the pass criteria, do not create the test. Identify the failed criterion, explain why the plan is too broad, and propose a narrower plan that preserves the user's goal where possible. Wait for the user to accept the revised scope; after acceptance, restart Phase 1 with the revised plan and proposed test, and obtain the required review before creating the test. If a criterion failure is found after a draft has been created, submit the exact draft deletion operation for pre-change review and delete it only after verifying an `APPROVED` report; explain the failed criterion to the user and wait for direction before continuing. For any other reviewer rejection, do not create, show, or implement the test; explain the rejection and wait for user direction.
+**Failure action:** If the plan cannot satisfy the pass criteria, do not create the test. Identify the failed criteria and distinguish a request-level conflict from a defect in the proposed approach under Bounded Plan Recovery. If a rejected draft has already been created, obtain verified pre-change approval for its exact deletion and delete it before retrying. Do not create, show, or implement a rejected test. For a plan-level failure within the attempt limit, propose a distinct alternative preserving the complete request and restart Phase 1 without waiting for user direction. For a request-level failure or exhausted attempt limit, explain the failure and request user direction. Every alternative must pass all gates; narrowing the implementation approach must not narrow the requested outcome.
 
 ### 2. Create and review the actual test
 
-After the test approved in Phase 1 is created, submit the actual test file to the adversarial reviewer before showing it to the user. The reviewer must verify that the created test exactly matches the complete test proposed and approved in Phase 1, compare it with the approved plan, and verify every test-gate criterion, including that it represents the plan's intended gheer. This separate review verifies that the created test is the approved test; the Phase 1 review does not substitute for checking the actual file. Show the test only after verifying a matching, readable `APPROVED` report. If the reviewer finds a criterion failure, follow Phase 1's failure action. If the actual test does not match the Phase 1 proposal, do not show or implement it; explain the discrepancy and wait for user direction. If the user directs a revision, submit the exact proposed edit for pre-change review and repeat Phase 1 and Phase 2 before showing the revised test. For any other rejection, do not show or implement the test; explain the rejection and wait for user direction.
+After the test approved in Phase 1 is created, submit the actual test file to the adversarial reviewer before showing it to the user. The reviewer must verify that the created test exactly matches the complete test proposed and approved in Phase 1, compare it with the approved plan, and verify every test-gate criterion, including that it represents the plan's intended gheer. This separate review verifies that the created test is the approved test; the Phase 1 review does not substitute for checking the actual file. Show the test only after verifying a matching, readable `APPROVED` report. If the reviewer finds a criterion failure, a mismatch with the approved proposal, or any other reason for rejection, do not show or implement the test; follow Phase 1's failure action and Bounded Plan Recovery, including approved draft deletion and restarting both test reviews for an alternative. If the user directs a revision, submit the exact proposed edit for pre-change review and repeat Phase 1 and Phase 2 before showing the revised test.
 
 ### 3. User acceptance
 
@@ -162,4 +176,4 @@ Before each implementation change, obtain the required pre-change review. After 
 - **Theory tests:** A theory test is allowed only when it tests a modification to a gheer already covered by a regular test. Otherwise, use a regular test.
 - **Naming:** Name each test concisely for the gheer it verifies, using domain language—not the test's specific data or implementation details. Apply to regular and theory tests. Put concrete test data and code-level identifiers in the test body.
 
-**Failure action:** If a test cannot meet every criterion, do not create it. If such a test has already been created, obtain approval for its exact deletion through the required pre-change review, then delete it. Stop, identify the failed criterion, and wait for the user to change the goal or rules.
+**Failure action:** If a test cannot meet every criterion, do not create it. If such a test has already been created, obtain approval for its exact deletion through the required pre-change review, then delete it. Identify the failed criterion. Before implementation, follow Bounded Plan Recovery and restart the test gates for any alternative; stop and request user direction for a request-level failure or exhausted attempt limit. Once implementation has begun, do not retry autonomously; follow the approved-plan-change and rejected-result requirements as applicable.
