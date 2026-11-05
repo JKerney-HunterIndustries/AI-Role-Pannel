@@ -116,7 +116,11 @@ Complete phases in order; pass each before the next. Test creation requires two 
 
 **Pass criteria:** The plan is appropriately scoped only if one good test can satisfy all of the following:
 
->  **LAW**: The test represents one intended gheer and one specific path through the application. The behavior under test is the exact mapping returned by that method. When evealuating this law for the test gate assessment, the reviewer must act as pessimisticly as possible.
+> **LAW:** Each law must be satisfied in full. Partial compliance is failure; compliance with one requirement cannot compensate for violating another. Any unresolved uncertainty about compliance is also grounds for rejection.
+
+> **LAW:** The test represents one intended gheer and one specific path through the application. A path is the execution route selected by the test’s inputs and preconditions, including relevant decisions and transitions. Assertions must verify only the intended gheer’s observable outcome, not other independently observable gheers or side effects.
+
+> **LAW:** Every new or changed independently observable gheer or side effect introduced by the implementation requires test coverage. Distinct gheers or side effects require distinct tests. If satisfying this requirement requires more than the single proposed test, the plan is too broad and must be narrowed
 
 - The test meets every criterion under **A Good Test**.
 - The test exercises every new execution pathway introduced by the proposed implementation.
