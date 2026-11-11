@@ -19,6 +19,7 @@ A *Gheer* is any action a program performs that falls into one or more of these 
 - modification of data;
 - creation of a container for data;
 - loading information into memory;
+- creating a function and/or method;
 - changing the programming environment in which the program operates;
 - modifying state;
 - sending messages;
