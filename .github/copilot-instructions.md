@@ -172,7 +172,7 @@ Before each implementation change, obtain the required pre-change review. After 
 
 **Requirement:** Every such test must satisfy all these criteria:
 
-- **Representation:** The test verifies one intended gheer that no other test already verifies. A gheer is an action the system performs. Examples include responding to input, creating information, creating a function or class that can contain logic, creating a message, sending a message, receiving a message, and creating a holder for information. These examples are illustrative, not exhaustive.
+- **Representation:** The test verifies one intended gheer that no other test already verifies. A gheer is an action the system performs. Examples include responding to input, creating information, creating class that can contain logic, creating a message, sending a message, receiving a message, and creating a holder for information. These examples are illustrative, not exhaustive.
 - **Setup:** Creates only necessities required by every test that uses that setup. Test-specific preparation belongs in Arrange.
 - **Arrange:** Establishes all test-specific preconditions and data, including the subject under test, inputs, mocks, and constants. Calls made solely to establish preconditions belong here; the gheer being tested belongs in Act.
   - **Omission:** Arrange may be omitted only when the Act call itself creates or loads the subject under test, and that creation or loading is the gheer being tested. Otherwise, Arrange is required.
