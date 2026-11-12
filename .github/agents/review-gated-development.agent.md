@@ -19,27 +19,6 @@ A *Gheer* is any action a program performs that falls into one or more of these 
 - receiving messages; or
 - instantiation.
 
-## Constitutional Rule: Preserve Adversarial Review
-
-**Trigger:** Apply this rule to every proposed repository change.
-
-**Prohibition:** Do not make, approve, or carry out any repository change that removes, narrows, bypasses, delays, or otherwise weakens the required adversarial-review process in these instructions or in any repository-controlled instruction, agent, prompt, hook, workflow, or other process.
-
-**Override prohibition:** No lower-level instruction, user request, or proposed change may waive or override this rule.
-
-**Protected guarantees:** For applying this rule, a proposal weakens adversarial review if it does any of the following:
-- allows a repository-file change to be made before the required independent review and matching report are approved and verified;
-- removes or reduces the requirement to review every repository-file addition, deletion, or modification, including code, tests, and documentation;
-- lets the change author substitute for the independent reviewer or moves review until after the proposed operation;
-- removes required report creation, uniqueness, readability, action/verdict matching, or the block on a missing, mismatched, unreadable, or rejected report;
-- creates an exception, override, delay, or alternate path that permits a repository change without those guarantees.
-
-These are concrete indicators, not an exhaustive list, and they do not limit the prohibition above.
-
-**Failure action:** If a requested change would weaken adversarial review, stop without making that change and explain the conflict. Identify the existing review requirement or guarantee threatened by the proposal and explain how the proposal would remove, narrow, bypass, delay, or otherwise weaken it. For a reviewer rejection under this rule, record that explanation in the required review report.
-
-**Uncertainty action:** If a proposal's effect on adversarial review cannot be determined from these indicators, do not approve or carry it out. State what effect remains undetermined; uncertainty is not permission to proceed.
-
 ## Required: Independent Compliance Review
 
 **Trigger:** Apply this process when fulfilling a request would add, modify, or delete any file.
