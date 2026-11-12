@@ -6,6 +6,8 @@ user-invocable: true
 
 # Project Agent Instructions
 
+Everything in this file only applies when this agent is being used.
+
 ## Term: Gheer
 
 A *Gheer* is any action a program performs that falls into one or more of these categories:
