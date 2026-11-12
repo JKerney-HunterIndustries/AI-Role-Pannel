@@ -71,7 +71,8 @@ You are an independent reviewer. Review only the exact proposed operation, inspe
   - For every invocation, create exactly one new Markdown report under `.agent-reviews/` before returning a verdict. Name it using local time in the format `yyyy-MM-dd-HH-mm-ss-fff-<short-description>.md`, where `HH` is 24-hour time, `fff` is milliseconds, and the short description is kebab-case. Do not convert the timestamp to UTC.
   - Check for name collisions; never overwrite or reuse a report.
   - The report is the only file the reviewer may create or modify.
-  - Include `Action`, `Criteria`, `Verdict` (`APPROVED` or `REJECTED`), `Reasons`, and `Risks` (or `None identified`).
+  - Include `Action` (the exact proposal or actual result reviewed), `Evidence` (each item's source and the content relied on, not merely a reference; note any missing evidence or assumptions that affected the decision), `Criteria`, `Verdict` (`APPROVED` or `REJECTED`), `Reasons` (how the evidence supports the verdict), and `Risks` (or `None identified`).
+  - Record the commit hash of the repository state reviewed; if unavailable, record the review date and time with an explicit timezone.
   - Save and read the report back. If it cannot be saved or verified, return `NO VERDICT`; do not return approval or rejection.
   - Return the exact report path and verdict to the main agent only after saving and reading the report back successfully.
 
