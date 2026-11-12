@@ -173,7 +173,7 @@ Before each implementation change, obtain the required pre-change review. After 
 - **Act:** Makes the single call that invokes the gheer being tested. All calls made by the test before Act are preparation and belong in Setup or Arrange.
 - **Assert:** Checks results only; it must not create or arrange anything being tested, and assertions must not be placed in Setup.
   - **One assertion**: A test must contain exactly one assertion statement. That assertion must verify exactly one independently observable property of the intended Gheer. It must not combine checks of multiple properties, including through aggregate or deep-equality assertions.
-- **Single gheer:** Verifies one independently observable gheer; do not combine separate gheers that could pass or fail independently. Multiple assertions are allowed when they check meaningful properties of that same outcome.
+- **Single gheer:** Verifies one independently observable gheer; do not combine separate gheers that could pass or fail independently.
 - **Branching:** Test code must represent a single specific path through the application. Branching logic is prohibited in all test code. This includes conditional statements (`if`, `switch`/`match`), conditional expressions (such as ternaries), and short-circuit operators (`&&`, `||`). Loops are allowed.
 - **Theory tests:**
   - **New Gheer:** Begin with a regular test for a newly introduced Gheer. Add a theory test only after a concrete need to cover defined variations of that same Gheer has been demonstrated.
