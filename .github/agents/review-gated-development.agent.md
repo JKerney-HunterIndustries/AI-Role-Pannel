@@ -33,6 +33,8 @@ A *Gheer* is any action a program performs that falls into one or more of these 
 2. **Review steps when explicitly required.** For each step requiring review under an applicable rule, submit the proposed step before performing it. Do not perform that step until its report is verified as `APPROVED`.
 3. **Review the actual result after execution.** Submit the actual file changes for review against the applicable rules and approved plan. Earlier approvals do not substitute for this review.
 
+**Actual-result evidence:** Use a complete Git diff and changed-file status/list when an accessible Git repository fully represents every affected path. If Git is unavailable, or any affected path is not fully represented in that repository's diff and status (for example, an ignored path), submit equivalent evidence instead: a complete affected-path and operation list; before and after contents for modified files; final contents and evidence of prior absence for created files; prior contents and confirmation of current absence for deleted files; and equivalent old/new path and content evidence for moves or renames. Do not create a Git repository or change ignore/tracking settings solely to produce a diff. If evidence is incomplete, obtain the missing evidence before requesting result review; the absence of a Git diff alone does not block review.
+
 **Rejected result:** If result review returns `REJECTED`, treat the plan as rejected. Revert the changes made under that plan, preserve the review reports and any pre-existing changes, then stop. The revert must itself receive the required pre-change review; rejection does not waive that protection.
 
 Each review requires a separate report containing the reviewer's reasoning and verdict.
